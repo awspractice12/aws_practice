@@ -1,0 +1,12 @@
+.vagrant
+2.vagrant
+ubuntu-xenial-16.04-cloudimg-console.log
+target
+bin
+db-derby-10.14.2.0-bin
+derby.log
+.classpath
+.project
+.settings
+awsclient
+ss-cloud-poc3

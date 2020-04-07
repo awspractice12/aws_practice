@@ -1,0 +1,65 @@
+package com.metroservice.route.web.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.Before;
+import org.junit.After;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+//@RunWith(SpringJUnit4ClassRunner.class)
+public class JDBCTest {
+
+//    
+    //-------------------------------------------------------------------------------------------
+    @Before
+    public void setup() {
+		//System.out.println("**********************************************************************************************");
+		//System.out.println("------------------- Starting CustomerApplication for JUnit testing -----------------------------");
+		//System.out.println("**********************************************************************************************");
+		//List<String> list = new ArrayList<String>();
+		//list.add("-Deureka.client.register-with-eureka=false");
+		//list.add("-Deureka.client.fetch-registry=false");
+		//list.add("-Deureka.server.enable-self-preservation=false");
+		//String[] argArray = list.toArray(new String[list.size()]);
+		//
+		//ctx = SpringApplication.run(CustomerApplication.class, argArray);
+    }
+	//-------------------------------------------------------------------------------------------
+    @After
+    public void destroy() {
+		//System.out.println("**********************************************************************************************");
+		//System.out.println("-------------------- Stopping CustomerApplication for JUnit testing ----------------------------");
+		//System.out.println("**********************************************************************************************");
+        //int exitCode = SpringApplication.exit(ctx, new ExitCodeGenerator() {
+        //    @Override
+        //    public int getExitCode() {
+        //            return 0;
+        //        }
+        //});
+    }
+	//-------------------------------------------------------------------------------------------
+    @Test
+    public void getRoutes() throws Exception{
+        try {
+            // connect method #1 - embedded driver
+            String dbURL = "jdbc:derby://localhost:1527/mydb;create=true";
+            String user = "shibu";
+            String password = "shibu";
+            Connection conn = DriverManager.getConnection(dbURL, user, password);
+            if (conn != null) {
+                System.out.println("Connected to database #1");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }        
+	//-------------------------------------------------------------------------------------------
+//	//-------------------------------------------------------------------------------------------
+//	//-------------------------------------------------------------------------------------------
+//	//-------------------------------------------------------------------------------------------
+//	//-------------------------------------------------------------------------------------------
+}
