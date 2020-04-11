@@ -29,7 +29,8 @@ phases:
     commands:
       - echo 'Logging into AWS'
       - aws --version
-      - $(aws ecr get-login --region us-east-2 --registry-ids 732631625641)
+#      - $(aws ecr get-login --region us-east-2 --registry-ids 732631625641)
+      - $(aws ecr get-login)
       - REPOSITORY_URI=732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo
   build:
     commands:
