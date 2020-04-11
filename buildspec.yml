@@ -31,7 +31,7 @@ phases:
       - aws --version
 #      - $(aws ecr get-login --region us-east-2 --registry-ids 732631625641)
 #      - $(aws ecr get-login-password --region us-east-2)
-      - aws ecr get-authorization-token  --region us-east-2
+      - aws ecr get-authorization-token  --region us-east-2 | sed 's|https://||'
       - REPOSITORY_URI=732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo
   build:
     commands:
