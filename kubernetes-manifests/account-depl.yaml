@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-depl
+spec:
+  selector:
+    matchLabels:
+      app: account-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: account-pod
+    spec:
+      containers:
+        - name: account-pod
+          image: "localhost:5000/account-service:1.0"
+          env:
+          # This container requires a derby database to be running
+          - name: DERBY_DB_SERVER
+            value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+          - name: DERBY_DB_PORT
+            value: ${DERBY_DB_SERVICE_SERVICE_PORT}
+          - name: DERBY_DB_USERNAME
+            value: shibu
+          - name: DERBY_DB_PASSWORD
+            value: shibu
+          ports:
+            - name: acc-http-port
+              containerPort: 8201

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: derby-db-depl
+spec:
+  selector:
+    matchLabels:
+      app: derby-db-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: derby-db-pod
+    spec:
+      volumes:
+      - name: vol
+        hostPath:
+          path: /dbs/
+      containers:
+        - name: derby-db-pod
+          image: "localhost:5000/lucascoelhocs/db-derby:1.0"
+          ports:
+            - name: dbport
+              containerPort: 1527
+          volumeMounts:
+          - name: vol
+            mountPath: /dbs/
+              
