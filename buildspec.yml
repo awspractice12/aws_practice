@@ -42,8 +42,12 @@ phases:
       - cd java-micro-service-projects
       - mvn install
       - cd account-service
-      - docker build . -t $REPOSITORY_URI:account-service:1.0
-      - docker push       $REPOSITORY_URI:account-service:1.0
+      - docker build . -t $REPOSITORY_URI:account-service-1.0
+      - docker push       $REPOSITORY_URI:account-service-1.0
+      - cd ..
+      - cd customer-service
+      - docker build . -t $REPOSITORY_URI:customer-service-1.0
+      - docker push       $REPOSITORY_URI:customer-service-1.0
       # - command
   #post_build:
     #commands:
