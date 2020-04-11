@@ -21,6 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+        <docker.registry.url>localhost:5000/</docker.registry.url>
 	</properties>
 	
 	<dependencyManagement>
@@ -60,12 +61,12 @@
 			<artifactId>derbyclient</artifactId>
 			<version>10.14.1.0</version>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.1.2.Final</version>
-        </dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.1.2.Final</version>
+</dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -94,6 +95,71 @@
                     <includeSystemScope>true</includeSystemScope>
                 </configuration>                
           </plugin>
+          
+          
+          
+          
+        <!--
+        <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>dockerfile-maven-plugin</artifactId>
+            <version>1.4.3</version>
+            <executions>
+                <execution>
+                    <id>default</id>
+                    <goals>
+                        <goal>build</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+            <repository>docker.io/kkapelon/docker-maven-comparison</repository>
+                <tag>${project.version}</tag>
+            </configuration>
+        </plugin>          
+        -->
+        <!--
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>dockerfile-maven-plugin</artifactId>
+          <version>1.4.3</version>
+          <configuration>
+            <imageName>example</imageName>
+            <dockerDirectory>.</dockerDirectory>
+            <resources>
+               <resource>
+                 <targetPath>/</targetPath>
+                 <directory>${project.build.directory}</directory>
+                 <include>${project.build.finalName}.jar</include>
+               </resource>
+            </resources>
+          </configuration>
+        </plugin>
+        -->
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>dockerfile-maven-plugin</artifactId>
+          <version>1.4.13</version>
+          <executions>
+            <execution>
+              <id>default</id>
+              <goals>
+                <goal>build</goal>
+                <!--<goal>push</goal>-->
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <repository>${docker.registry.url}${project.artifactId}</repository>
+            <tag>${project.version}</tag>
+            <!--
+            <buildArgs>
+              <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+            </buildArgs>
+            -->
+          </configuration>
+        </plugin>
+          
 		</plugins>
 	</build>
 
