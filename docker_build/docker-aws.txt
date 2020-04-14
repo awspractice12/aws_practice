@@ -1,0 +1,24 @@
+#--------------------------------------------------------------------------------------------------
+#install aws client
+#run command 'aws configure' and set the Access Key and stuff
+REPOSITORY_URI=732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo
+aws ecr get-login-password --region us-east-2 | sudo docker login --username AWS --password-stdin $REPOSITORY_URI
+#--------------------------------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------
+sudo docker pull 732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:account-service-1.0
+sudo docker pull 732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:customer-service-1.0
+sudo docker pull 732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:loan-service-1.0
+sudo docker pull 732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:db-derby-1.0
+#--------------------------------------------------------------------------------------------------
+sudo docker run -d -p 1527:1527 -v /dbs:/dbs 732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:db-derby-1.0
+sudo apt install derby-tools
+ij
+
+#Then create tables and insert sample data as per the script in git repo
+#--------------------------------------------------------------------------------------------------
+sudo docker run -d -p 8101:8101              732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:customer-service-1.0
+sudo docker run -d -p 8201:8201              732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:account-service-1.0

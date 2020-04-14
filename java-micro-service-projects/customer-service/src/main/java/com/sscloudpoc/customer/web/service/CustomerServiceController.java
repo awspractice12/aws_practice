@@ -1,8 +1,5 @@
 package com.sscloudpoc.customer.web.service;
 
-
-
-
 import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
@@ -27,6 +24,11 @@ public class CustomerServiceController {
 
     @Autowired
     private CustomerService customerService;
+    //------------------------------------------------------------------------------------------------------------------------------
+    @RequestMapping(method= RequestMethod.GET, value="/customer/no-op")
+    public String noOperation() throws Exception {
+		return "All OK";
+    }
     //------------------------------------------------------------------------------------------------------------------------------
     @RequestMapping(method= RequestMethod.GET, value="/customer/all")
     public CustomerListTO getAllCustomers() throws Exception {

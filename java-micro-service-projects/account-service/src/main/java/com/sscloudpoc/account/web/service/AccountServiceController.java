@@ -1,27 +1,28 @@
 package com.sscloudpoc.account.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sscloudpoc.account.business.domain.AccountListTO;
 import com.sscloudpoc.account.business.domain.AccountTO;
 import com.sscloudpoc.account.business.service.AccountService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 @RestController
 public class AccountServiceController {
 
     @Autowired
     private AccountService accountService;
+    //------------------------------------------------------------------------------------------------------------------------------
+    @RequestMapping(method= RequestMethod.GET, value="/account/no-op")
+    public String noOperation() throws Exception {
+		return "All OK";
+    }
     //------------------------------------------------------------------------------------------------------------------------------
     @RequestMapping(method= RequestMethod.GET, value="/account/all")
     public AccountListTO getAllRoutes() throws Exception {
@@ -75,5 +76,11 @@ public class AccountServiceController {
 		//System.out.println("AccountServiceController.deleteAllRoutes().exit");
     }
     //------------------------------------------------------------------------------------------------------------------------------
+    @RequestMapping(method= RequestMethod.GET, value="/account/init")
+    public void initializeDatabase() throws Exception {
+		//System.out.println("AccountServiceController.deleteAllRoutes().enter");
+		this.accountService.deleteAllAccounts();
+		//System.out.println("AccountServiceController.deleteAllRoutes().exit");
+    }
     
 }
