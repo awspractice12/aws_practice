@@ -1,0 +1,31 @@
+version: '3'
+services:
+    derby-db:
+        image: ${REPO_URL}:db-derby-1.0
+        volumes: 
+            - /dbs:/dbs
+        ports:
+            - 1527:1527
+    account-service:
+        image: ${REPO_URL}:account-service-1.0
+        ports:
+            - 8201:8201
+        depends_on:
+            - derby-db
+        environment:
+            - DERBY_DB_SERVER=derby-db
+            - DERBY_DB_PORT=1527
+            - DERBY_DB_USERNAME=shibu
+            - DERBY_DB_PASSWORD=shibu
+    customer-service:
+        image: ${REPO_URL}:customer-service-1.0
+        ports:
+            - 8101:8101
+        depends_on:
+            - derby-db
+        environment:
+            - ACCOUNT_SERVER_URL_BASE=http://account-service:8201/
+            - DERBY_DB_SERVER=derby-db
+            - DERBY_DB_PORT=1527
+            - DERBY_DB_USERNAME=shibu
+            - DERBY_DB_PASSWORD=shibu
