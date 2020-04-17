@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: account-pod
-          image: "localhost:5000/account-service:1.0"
+          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:account-service-1.0"
           env:
           # This container requires a derby database to be running
           - name: DERBY_DB_SERVER
