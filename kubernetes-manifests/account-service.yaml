@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: service-account
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: account-pod
   ports:
-  - port: 8101
+  - port: 8201
     nodePort: 31111
     protocol: TCP
+  externalIPs:
+  - 13.59.77.185
