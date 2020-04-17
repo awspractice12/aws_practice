@@ -52,6 +52,12 @@ phases:
       - docker pull lucascoelhocs/db-derby:latest
       - docker tag  lucascoelhocs/db-derby:latest  $REPOSITORY_URI:db-derby-1.0
       - docker push $REPOSITORY_URI:db-derby-1.0
+      -
+      - cd ../..
+      - cd python_websvc
+      - docker build . -t $REPOSITORY_URI:loan-service-1.0
+      - docker push       $REPOSITORY_URI:loan-service-1.0
+      - 
       # - command
   #post_build:
     #commands:

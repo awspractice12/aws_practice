@@ -1,0 +1,1 @@
+REPO_URL=732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo
