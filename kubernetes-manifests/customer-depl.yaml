@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-depl
+spec:
+  selector:
+    matchLabels:
+      app: customer-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: customer-pod
+    spec:
+      containers:
+        - name: customer-pod
+          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:customer-service-1.0"
+          env:
+          # This container requires a derby database to be running
+          - name: DERBY_DB_SERVER
+            value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+          - name: DERBY_DB_PORT
+            value: ${DERBY_DB_SERVICE_SERVICE_PORT}
+          - name: DERBY_DB_USERNAME
+            value: shibu
+          - name: DERBY_DB_PASSWORD
+            value: shibu
+          ports:
+            - name: acc-http-port
+              containerPort: 8101
