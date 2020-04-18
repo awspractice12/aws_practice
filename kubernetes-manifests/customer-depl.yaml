@@ -14,10 +14,11 @@ spec:
     spec:
       containers:
         - name: customer-pod
-          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:customer-service-1.0"
+          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:customer-service-1.0"
+          image: "localhost:32000/local:customer-service-1.0"
           env:
           - name: ACCOUNT_SERVER_URL_BASE
-            value: ${SERVICE_ACCOUNT_SERVICE_HOST}:${SERVICE_ACCOUNT_SERVICE_PORT}
+            value: http://${SERVICE_ACCOUNT_SERVICE_HOST}:${SERVICE_ACCOUNT_SERVICE_PORT}
           # This container requires a derby database to be running
           - name: DERBY_DB_SERVER
             value: ${DERBY_DB_SERVICE_SERVICE_HOST}

@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: loan-pod
-          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:loan-service-1.0"
+          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:loan-service-1.0"
+          image: "localhost:32000/local:loan-service-1.0"
           env:
           # This container requires a derby database to be running
           #- name: DERBY_DB_SERVER
