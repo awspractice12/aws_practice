@@ -19,6 +19,7 @@ spec:
           # This container requires a derby database to be running
           - name: DERBY_DB_SERVER
             value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+            #value: ${derby-db-service.kubernetes.default.svc.cluster.local}
           - name: DERBY_DB_PORT
             value: ${DERBY_DB_SERVICE_SERVICE_PORT}
           - name: DERBY_DB_USERNAME
