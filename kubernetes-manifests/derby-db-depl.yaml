@@ -18,8 +18,8 @@ spec:
           path: /dbs/
       containers:
         - name: derby-db-pod
-          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:db-derby-1.0"
-          image: "localhost:32000/local:db-derby-1.0"
+          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc:db-derby-1.0"
+          image: "localhost:32000/ss-cloud-poc:db-derby-1.0"
           ports:
             - name: dbport
               containerPort: 1527
