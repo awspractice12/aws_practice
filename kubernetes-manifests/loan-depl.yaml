@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loan-depl
+spec:
+  selector:
+    matchLabels:
+      app: loan-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: loan-pod
+    spec:
+      containers:
+        - name: loan-pod
+          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc-container-repo:loan-service-1.0"
+          env:
+          # This container requires a derby database to be running
+          #- name: DERBY_DB_SERVER
+          #  value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+          ports:
+            - name: acc-http-port
+              containerPort: 8301
