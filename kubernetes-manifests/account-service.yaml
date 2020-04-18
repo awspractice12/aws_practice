@@ -8,5 +8,5 @@ spec:
     app: account-pod
   ports:
   - port: 8201
-    nodePort: 38201
+    nodePort: 30821
     protocol: TCP
