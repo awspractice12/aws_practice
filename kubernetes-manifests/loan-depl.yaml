@@ -23,3 +23,9 @@ spec:
           ports:
             - name: acc-http-port
               containerPort: 8301
+      tolerations:
+      - key: "node.kubernetes.io/disk-pressure"
+        operator: "Exists"
+        effect: "NoExecute"
+
+              
