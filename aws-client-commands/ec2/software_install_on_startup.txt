@@ -1,0 +1,61 @@
+#!/bin/bash
+
+apt-get update
+apt-get install derby-tools -y
+apt-get install unzip -y
+apt-get install jq -y
+apt-get install busybox -y
+apt-get install dos2unix -y
+
+
+#=================================================================
+#Online install from DOCKER repository
+
+apt-get remove docker docker-engine docker.io containerd runc
+apt-get update
+apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io -y
+
+SOME_USER=ubuntu
+sudo groupadd docker
+sudo gpasswd -a $SOME_USER docker
+
+#=================================================================
+
+
+
+#================== install docker-compose start =================
+apt-get install jq -y
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+chmod 755 /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+#================== install docker-compose end ===================
+
+#================== install minikube start ============================
+# Install kubectl
+
+#curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+#chmod +x ./kubectl
+#sudo mv ./kubectl /usr/local/bin/kubectl
+#----------------------------------------------------------------------
+# Install Minikube
+#sudo apt-get install -y conntrack
+#curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+#chmod +x minikube
+#sudo mv minikube /usr/local/bin/
+#----------------------------------------------------------------------
+#================== install minikube end ==============================
+
+#================== install aws-client start =================
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -q awscliv2.zip
+./aws/install
+/usr/local/bin/aws --version
+#================== install aws-client end ===================
+
+touch /home/ubuntu/software-installed-automatically
