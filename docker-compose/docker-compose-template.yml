@@ -29,3 +29,7 @@ services:
             - DERBY_DB_PORT=1527
             - DERBY_DB_USERNAME=shibu
             - DERBY_DB_PASSWORD=shibu
+    loan-service:
+        image: ${REPO_URL}:loan-service-1.0
+        ports:
+            - 8301:8301

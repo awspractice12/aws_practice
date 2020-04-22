@@ -1,26 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: account-depl
+  name: customer-depl
 spec:
   selector:
     matchLabels:
-      app: account-pod
+      app: customer-pod
   replicas: 1
   template:
     metadata:
       labels:
-        app: account-pod
+        app: customer-pod
     spec:
       containers:
-        - name: account-pod
-          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc:account-service-1.0"
-          image: "localhost:5000/ss-cloud-poc:account-service-1.0"
+        - name: customer-pod
+          #image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc:customer-service-1.0"
+          image: "localhost:5000/ss-cloud-poc:customer-service-1.0"
           env:
+          - name: ACCOUNT_SERVER_URL_BASE
+            value: http://${SERVICE_ACCOUNT_SERVICE_HOST}:${SERVICE_ACCOUNT_SERVICE_PORT}
           # This container requires a derby database to be running
           - name: DERBY_DB_SERVER
             value: ${DERBY_DB_SERVICE_SERVICE_HOST}
-            #value: ${derby-db-service.kubernetes.default.svc.cluster.local}
           - name: DERBY_DB_PORT
             value: ${DERBY_DB_SERVICE_SERVICE_PORT}
           - name: DERBY_DB_USERNAME
@@ -29,9 +30,10 @@ spec:
             value: shibu
           ports:
             - name: acc-http-port
-              containerPort: 8201
+              containerPort: 8101
       tolerations:
       - key: "node.kubernetes.io/disk-pressure"
         operator: "Exists"
         effect: "NoExecute"
 
+              
