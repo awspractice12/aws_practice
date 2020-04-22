@@ -24,7 +24,7 @@ def get_cust_loan(cust_id):
 @app.route('/get-loan/<cust_id>/<loan_id>',methods=['GET'])
 def get_loan(cust_id,loan_id):
     customer = loan_retrive.retrieveloan(cust_id,loan_id)
-    customer = json.loads(json.dumps((customer), indent=4, cls=DecimalEncoder)
+    customer = json.dumps((customer), indent=4, cls=DecimalEncoder)
     return json.loads(customer)
 
 
@@ -35,19 +35,19 @@ def get_all_pay():
 @app.route('/get-cust-pay/<loan_id>',methods=['GET'])
 def get_cust_pay(loan_id):
     cust_loan = payment_retrive.retrieve_cust_pay(loan_id)
-    cust_loan = json.loads(json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
+    cust_loan = json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
     return json.loads(cust_loan)
 
 @app.route('/get-pay/<loan_id>/<trans_id>',methods=['GET'])
 def get_pay(loan_id,trans_id):
     cust_loan = payment_retrive.retrieve_loan_pay(loan_id,trans_id)
-    cust_loan = json.loads(json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
+    cust_loan = json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
     return json.loads(cust_loan)
 
 @app.route('/get-customer/<cust_id>',methods=['GET'])
 def get_customer(cust_id):
     cust_loan = payment_retrive.retrieve_loan_pay(loan_id,trans_id)
-    cust_loan = json.loads(json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
+    cust_loan = json.dumps((cust_loan), indent=4, cls=DecimalEncoder)
     return json.loads(cust_loan)
 
 if __name__ == '__main__':
