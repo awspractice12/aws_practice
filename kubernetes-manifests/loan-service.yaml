@@ -7,6 +7,6 @@ spec:
   selector:
     app: loan-pod
   ports:
-  - port: 8301
-    nodePort: 30831
+  - port: 5000
+#    nodePort: 30831
     protocol: TCP
