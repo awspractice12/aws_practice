@@ -18,12 +18,13 @@ spec:
           #image: "localhost:5000/ss-cloud-poc:customer-service-1.0"
           env:
           - name: ACCOUNT_SERVER_URL_BASE
-            value: http://${SERVICE_ACCOUNT_SERVICE_HOST}:${SERVICE_ACCOUNT_SERVICE_PORT}
+            value: http://service-account:8201
           # This container requires a derby database to be running
           - name: DERBY_DB_SERVER
-            value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+            #value: ${DERBY_DB_SERVICE_SERVICE_HOST}
+            value: derby-db-service
           - name: DERBY_DB_PORT
-            value: ${DERBY_DB_SERVICE_SERVICE_PORT}
+            value: "1527"
           - name: DERBY_DB_USERNAME
             value: shibu
           - name: DERBY_DB_PASSWORD

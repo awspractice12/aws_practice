@@ -14,22 +14,22 @@ sudo kubectl delete service derby-db-service
 
 echo -----------------------------------------
 
-sudo kubectl create -f  derby-db-depl.yaml
-sudo kubectl create -f  derby-db-service.yaml
+sudo kubectl apply -f  derby-db-depl.yaml
+sudo kubectl apply -f  derby-db-service.yaml
 echo -----------------------------------------
 #echo sleeping for 60 seconds
 #sleep 60
-sudo kubectl create -f  account-depl.yaml
-sudo kubectl create -f  account-service.yaml
+sudo kubectl apply -f  account-depl.yaml
+sudo kubectl apply -f  account-service.yaml
 echo -----------------------------------------
 #echo sleeping for 60 seconds
 #sleep 60
-sudo kubectl create -f  customer-depl.yaml
-sudo kubectl create -f  customer-service.yaml
+sudo kubectl apply -f  customer-depl.yaml
+sudo kubectl apply -f  customer-service.yaml
 echo -----------------------------------------
 #echo sleeping for 60 seconds
 #sleep 60
-sudo kubectl create -f  loan-depl.yaml
-sudo kubectl create -f  loan-service.yaml
+sudo kubectl apply -f  loan-depl.yaml
+sudo kubectl apply -f  loan-service.yaml
 echo -----------------------------------------
 
