@@ -1,0 +1,74 @@
+====================================================================================================
+aws iam create-role --profile shibuadmin --role-name sspoc_codebuild_role --assume-role-policy-document file://assume_role.json
+
+Output:
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "sspoc_codebuild_role",
+        "RoleId": "AROA2VFB7N6UZE6J43XF5",
+        "Arn": "arn:aws:iam::732631625641:role/sspoc_codebuild_role",
+        "CreateDate": "2020-04-25T20:13:31+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "*"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}
+
+====================================================================================================
+aws iam --profile shibuadmin attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibuadmin attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibuadmin attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibuadmin attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+====================================================================================================
+# First create a skeleton JSON for project creation...
+aws codebuild --profile shibuadmin create-project --generate-cli-skeleton
+
+# Once skeleton is generated, populate values as per your requirements, 
+# and then use the modified JSON in the create command
+
+#Use the above ARN in the create-codebuild-project.json
+
+aws codebuild --profile shibuadmin create-project --cli-input-json file://create-codebuild-project.json
+
+====================================================================================================
+
+#Do not use these
+#aws iam --profile shibuadmin put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-log-group-policy --policy-document file://ss-poc-log-group-policy.json
+#aws iam --profile shibuadmin put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-additional-policy --policy-document file://ss-poc-additional-policy.json
+====================================================================================================
+#TO delete old builds..
+#first get the list of builds
+aws codebuild --profile shibuadmin list-builds
+
+#Copy the output json into a file 'builds.txt'
+#Then run below command
+aws codebuild --profile shibuadmin batch-delete-builds --cli-input-json file://builds.txt
+
+
+====================================================================================================
+#List all projects
+aws codebuild --profile shibuadmin list-projects
+
+====================================================================================================
+
+====================================================================================================
+
+====================================================================================================
+
+====================================================================================================
+
+====================================================================================================
+
+====================================================================================================
+
+====================================================================================================

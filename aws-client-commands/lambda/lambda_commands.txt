@@ -1,0 +1,154 @@
+#====================================================================================================
+# From : 
+# https://medium.com/@jacobsteeves/aws-lambda-from-the-command-line-7efab7f3ebd9
+#====================================================================================================
+
+#====================================================================================================
+# Create out nice little function
+$ vi sspoc_main.py
+---sspoc_main.py---
+# Simple as it gets
+def add(event, context):
+    return event['a'] + event['b']
+----
+
+
+#Zip it
+zip sspoc_main.zip sspoc_main.py
+#====================================================================================================
+# Create a new user to use for Lambda functions.
+# If you want to create the functions for the current user, then you can skip it
+# ----------------------------------------------------
+# Create a user group 'sspoc_lambda_group'
+aws iam create-group --group-name sspoc_lambda_group
+
+# Create a user 'sspoc_lambda_user'
+aws iam create-user --user-name sspoc_lambda_user
+
+# Add our user to the group
+aws iam add-user-to-group --user-name sspoc_lambda_user --group-name sspoc_lambda_group
+
+# Create a password for this user
+aws iam create-login-profile --user-name sspoc_lambda_user --password sspo.Nalla,pw
+
+# Create an CLI access key for this user
+aws iam create-access-key --user-name sspoc_lambda_user
+
+# Save the Secret and Access Key's some where safe
+# "AccessKeyId": "AOIKPI0WEHSOAPODIDMS",
+# "SecretAccessKey": "2ERvDkF5YyOiVmAoJSFNASOCMuaguFAviQ3+bQWo",
+
+#====================================================================================================
+
+# Create our policy granting all the lambda functionality
+$ vi sspoc_lambda_policy.json
+---sspoc_lambda_policy.json---
+{
+   "Version": "2012-10-17",
+   "Statement": [{
+       "Effect": "Allow",
+       "Action": [
+          "iam:*",
+          "lambda:*"
+       ],
+       "Resource": "*"
+   }]
+}
+
+# Grant this policy to our sspoc_lambda_user
+aws iam put-user-policy --user-name sspoc_lambda_user --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+
+#====================================================================================================
+
+#Next we will configure our AWS cli to this user.
+#Use the Access Key and Secret generated in earlier steps 
+
+aws configure --profile sspoc_lambda_user
+> AWS Access Key ID [None]: <your_key>
+> AWS Secret Access Key [None]: <your_secret>
+> Default region name [None]: us-west-2 
+> Default output format [None]: json # AWS stores this at ~/.aws/   
+
+#====================================================================================================
+
+# Make sure you can connect
+aws ec2  describe-regions
+#====================================================================================================
+
+#Lambda functions also need a role. 
+#The role specifies what actions the function instance is capable of.
+
+vi sspoc_basic_lambda_role.json
+---sspoc_basic_lambda_role.json---
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Effect": "Allow",
+        "Principal": { "AWS" : "*" },
+        "Action": "sts:AssumeRole"
+    }]
+}
+#--------------------------------------------------------
+aws iam create-role --profile shibutrial --role-name sspoc_basic_lambda_role --assume-role-policy-document file://sspoc_basic_lambda_role.json
+...
+
+# Note down the "ARN" e.g:
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "sspoc_basic_lambda_role",
+        "RoleId": "AROAYFEFS5PEINZLLRZD6",
+        "Arn": "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role",
+        "CreateDate": "2020-04-25T08:10:15+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "*"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}
+
+
+#====================================================================================================
+#to enable logs in Cloud WAtch
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+
+#====================================================================================================
+
+#Next we are going to push our add function up onto aws.
+
+aws lambda create-function \ 
+  --region us-east-2 \
+  --function-name add \
+  --zip-file fileb://sspoc_main.zip \
+  --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role"\
+  --handler sspoc_main.add \
+  --runtime python2.7 \
+  --profile sspoc_lambda_user
+
+#====================================================================================================
+
+#aws lambda delete-function --profile shibutrial --function-name add
+
+#====================================================================================================
+
+aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 
+
+#====================================================================================================
+
+#And now to invoke it
+
+#Create a request.json file to input your request data
+#Note: it is 'fileb'
+
+aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+cat output.txt && echo
+
+#====================================================================================================

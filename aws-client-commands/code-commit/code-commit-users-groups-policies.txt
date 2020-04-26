@@ -1,0 +1,82 @@
+#====================================================================================================
+# Create a user group 'git-repo-access-group'
+aws iam --profile shibutrial create-group --group-name git-repo-access-group
+
+Output :
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "git-repo-access-group",
+        "GroupId": "AGPAYFEFS5PELQMCLPHLR",
+        "Arn": "arn:aws:iam::560773393352:group/git-repo-access-group",
+        "CreateDate": "2020-04-26T10:15:48+00:00"
+    }
+}
+
+#====================================================================================================
+# Give GIT related permissions to this group
+aws iam --profile shibutrial attach-group-policy --group-name git-repo-access-group --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
+
+#====================================================================================================
+# Create users who need access to the git repo
+aws iam --profile shibutrial create-user --user-name shibu
+aws iam --profile shibutrial create-user --user-name arun
+aws iam --profile shibutrial create-user --user-name srikar
+aws iam --profile shibutrial create-user --user-name srini
+
+#====================================================================================================
+# Add newly created users to the group
+aws iam --profile shibutrial add-user-to-group --user-name shibu  --group-name git-repo-access-group
+aws iam --profile shibutrial add-user-to-group --user-name arun   --group-name git-repo-access-group
+aws iam --profile shibutrial add-user-to-group --user-name srikar --group-name git-repo-access-group
+aws iam --profile shibutrial add-user-to-group --user-name srini  --group-name git-repo-access-group
+
+#====================================================================================================
+# Create a temporary password for each user
+# Users have to change their password on first login
+aws iam --profile shibutrial create-login-profile --password-reset-required --user-name shibu  --password shibu97579
+aws iam --profile shibutrial create-login-profile --password-reset-required --user-name arun   --password arun087756
+aws iam --profile shibutrial create-login-profile --password-reset-required --user-name srikar --password srikar8204
+aws iam --profile shibutrial create-login-profile --password-reset-required --user-name srini  --password srini83398
+
+
+#====================================================================================================
+# Set policy to allow users to change their passwords
+aws iam --profile shibutrial put-user-policy --user-name shibu  --policy-name user_change_password_policy --policy-document file://allow-user-to-change-password-policy.json
+aws iam --profile shibutrial put-user-policy --user-name arun   --policy-name user_change_password_policy --policy-document file://allow-user-to-change-password-policy.json
+aws iam --profile shibutrial put-user-policy --user-name srikar --policy-name user_change_password_policy --policy-document file://allow-user-to-change-password-policy.json
+aws iam --profile shibutrial put-user-policy --user-name srini  --policy-name user_change_password_policy --policy-document file://allow-user-to-change-password-policy.json
+
+#====================================================================================================
+# Each use can create a CLI access key for themselves like this
+aws iam --profile shibutrial create-access-key --user-name shibu
+
+#====================================================================================================
+# Save the Secret and Access Key's some where safe, or do an "aws configure"
+# "AccessKeyId": "AKKSDFJOD73SAOD03KDX",
+# "SecretAccessKey": "2ERLIiiuoYUO8Ookodsv9amfi88SV8OKDKLLMQWo",
+
+#====================================================================================================
+#Users can change their passwords like this from the CLI
+aws iam --profile shibutrial change-password --old-password XXXXXXXXXXX --new-password YYYYYYYYYYY
+#====================================================================================================
+
+#====================================================================================================
+
+#====================================================================================================
+
+#====================================================================================================
+
+#====================================================================================================
+# Follow these steps to delete a user
+#------------------------------------
+aws iam --profile shibutrial delete-login-profile   --user-name shibu  
+aws iam --profile shibutrial delete-user-policy     --user-name shibu --policy-name user_change_password_policy
+aws iam --profile shibutrial remove-user-from-group --user-name shibu --group-name git-repo-access-group
+aws iam --profile shibutrial list-access-keys       --user-name shibu --output text
+
+#Use the above access-key-id for deletion below
+aws iam --profile shibutrial delete-access-key      --user-name shibu --access-key-id AKEOEKPFKPWIHMSKOZUE
+
+aws iam --profile shibutrial delete-user            --user-name shibu
+#====================================================================================================

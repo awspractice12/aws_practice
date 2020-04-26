@@ -1,0 +1,35 @@
+#================================================================================================
+aws codecommit --profile shibutrial create-repository --repository-name ss-poc-repo
+#------
+Output:
+{
+    "repositoryMetadata": {
+        "accountId": "560773393352",
+        "repositoryId": "20214d4a-aeba-4c2f-837c-569c0328c9dd",
+        "repositoryName": "ss-poc-repo",
+        "lastModifiedDate": "2020-04-26T15:42:43.406000+05:30",
+        "creationDate": "2020-04-26T15:42:43.406000+05:30",
+        "cloneUrlHttp": "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo",
+        "cloneUrlSsh": "ssh://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo",
+        "Arn": "arn:aws:codecommit:us-east-2:560773393352:ss-poc-repo"
+    }
+}
+#================================================================================================
+aws codecommit --profile shibutrial list-repositories
+
+#================================================================================================
+aws codecommit --profile shibutrial get-repository --repository-name ss-cloud-poc
+
+#================================================================================================
+aws codecommit --profile shibutrial update-repository-name --old-name MyDemoRepo --new-name MyRenamedDemoRepo
+
+#================================================================================================
+aws codecommit --profile shibutrial delete-repository --repository-name ss-poc-repo
+
+#================================================================================================
+
+#================================================================================================
+
+#================================================================================================
+
+#================================================================================================
