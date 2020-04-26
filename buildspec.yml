@@ -23,7 +23,7 @@ phases:
     commands:
       - echo 'Logging into AWS'
       - aws --version
-      - REPOSITORY_URI=732631625641.dkr.ecr.us-east-2.amazonaws.com
+      - REPOSITORY_URI=560773393352.dkr.ecr.us-east-2.amazonaws.com
       
 #      - $(aws ecr get-login --region us-east-2 --registry-ids 732631625641)
 #      - $(aws ecr get-login-password --region us-east-2)
