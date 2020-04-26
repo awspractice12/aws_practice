@@ -1,0 +1,14 @@
+#===========================================================================================
+sudo apt-get install sshpass -y
+ssh-keygen -t rsa -b4096
+ssh-add MyKeyPair2.pem                                                                                                                         
+cat ~/.ssh/id_rsa.pub | ssh -i MyKeyPair2.pem ubuntu@18.220.108.175 "cat - >> ~/.ssh/authorized_keys"
+#===========================================================================================
+ansible all -i ec2-hosts -u ubuntu           -a "ls -al"  -vvv
+ansible all -i ec2-hosts -u ubuntu -b        -a "apt update"
+ansible all -i ec2-hosts -u ubuntu -b -m apt -a "name=derby-tools  state=latest"
+ansible all -i ec2-hosts -u ubuntu -b -m apt -a "name=unzip        state=latest"
+ansible all -i ec2-hosts -u ubuntu -b -m apt -a "name=jq           state=latest"
+
+
+#===========================================================================================

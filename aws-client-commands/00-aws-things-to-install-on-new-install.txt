@@ -1,0 +1,12 @@
+sudo apt-get update
+sudo apt install derby-tools -y
+sudo apt install unzip -y
+sudo apt-get install jq -y
+
+another doc "readme-aws-client.txt"
+another doc "readme-docker-online-install.txt"
+another doc "readme-docker-compose-offline-install.txt"
+
+do a "aws configure"
+
+git clone repo
