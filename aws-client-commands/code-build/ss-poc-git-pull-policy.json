@@ -1,0 +1,14 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:codecommit:us-east-2:560773393352:ss-poc-repo"
+            ],
+            "Action": [
+                "codecommit:GitPull"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:logs:us-east-2:560773393352:log-group:/aws/codebuild/ss-poc-build",
+                "arn:aws:logs:us-east-2:560773393352:log-group:/aws/codebuild/ss-poc-build:*"
+            ],
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ]
+        }
+}

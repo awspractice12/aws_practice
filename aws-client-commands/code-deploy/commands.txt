@@ -1,0 +1,42 @@
+===========================================================================================
+
+aws iam create-role --profile shibutrial --role-name CodeDeployServiceRole --assume-role-policy-document file://CodeDeploy-Trust.json
+
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "CodeDeployServiceRole",
+        "RoleId": "AROAYFEFS5PEBDE3P4HSX",
+        "Arn": "arn:aws:iam::560773393352:role/CodeDeployServiceRole",
+        "CreateDate": "2020-04-27T17:47:07+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": [
+                            "codedeploy.amazonaws.com"
+                        ]
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}
+
+
+
+
+===========================================================================================
+
+===========================================================================================
+
+===========================================================================================
+
+===========================================================================================
+
+===========================================================================================
+

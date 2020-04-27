@@ -1,0 +1,45 @@
+{
+    "name": "ss-poc-build",
+    "source": {
+        "type": "CODECOMMIT",
+        "location": "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo",
+        "gitCloneDepth": 0,
+        "gitSubmodulesConfig": {
+            "fetchSubmodules": true
+        },
+        "insecureSsl": true
+    },
+    "sourceVersion": "master",
+    "artifacts": {
+        "type": "NO_ARTIFACTS"
+    },
+    "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/standard:2.0",
+        "computeType": "BUILD_GENERAL1_LARGE",
+        "environmentVariables": [
+            {
+                "name": "NOT_USED",
+                "value": "NOT_USED",
+                "type": "PLAINTEXT"
+            }
+        ],
+        "privilegedMode": true,
+        "imagePullCredentialsType": "CODEBUILD"
+    },
+    "serviceRole": "arn:aws:iam::560773393352:role/sspoc_codebuild_role2",
+    "timeoutInMinutes": 60,
+    "queuedTimeoutInMinutes": 60,
+    "tags": [
+        {
+            "key": "X",
+            "value": "X"
+        }
+    ],
+    "badgeEnabled": false,
+    "logsConfig": {
+        "cloudWatchLogs": {
+            "status": "DISABLED"
+        }
+    }
+}

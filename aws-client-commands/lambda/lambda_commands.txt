@@ -56,7 +56,7 @@ $ vi sspoc_lambda_policy.json
 }
 
 # Grant this policy to our sspoc_lambda_user
-aws iam put-user-policy --user-name sspoc_lambda_user --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+aws iam put-user-policy --profile shibutrial --user-name shibutrial --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
 
 #====================================================================================================
 
@@ -148,7 +148,7 @@ aws lambda create-function --profile shibutrial --function-name add --zip-file f
 #Create a request.json file to input your request data
 #Note: it is 'fileb'
 
-aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+aws lambda invoke --profile shibutrial --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload fileb://request.json output.txt
 cat output.txt && echo
 
 #====================================================================================================

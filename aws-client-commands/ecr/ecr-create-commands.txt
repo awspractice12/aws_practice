@@ -1,0 +1,34 @@
+#------------------------------------------------------------------------------------
+#Login
+#-----
+ACCOUNT_ID=560773393352
+REGION=us-east-2
+REPO_NAME=ss-cloud-poc
+REPO_URL=560773393352.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc
+
+#------------------------------------------------------------------------------------
+#Docker login to private repository
+
+aws ecr  --profile shibutrial get-login-password --region $REGION | sudo docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+#------------------------------------------------------------------------------------
+
+aws ecr --profile shibutrial create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+        
+#------------------------------------------------------------------------------------
+#List Images
+aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
+aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME -image-ids imageTag=account-service-1.0 
+
+------------------------------------------------------------------------------------
+#Re-Tag to OLD
+
+MANIFEST=$(aws ecr batch-get-image --repository-name $REPO_NAME --image-ids imageTag=account-service-1.0 --query 'images[].imageManifest' --output text)
+
+aws ecr --profile shibutrial put-image --repository-name $REPO_NAME --image-tag OLD --image-manifest "$MANIFEST"
+
+#------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+

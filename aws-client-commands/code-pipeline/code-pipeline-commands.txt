@@ -1,0 +1,7 @@
+aws iam --profile shibutrial put-role-policy    --role-name codebuild-ss-build4-service-role --policy-name ss-poc-get-auth-policy --policy-document file://GetAuthorizationToken.json
+
+aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
