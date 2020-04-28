@@ -93,21 +93,31 @@ aws codebuild --profile shibutrial batch-delete-builds --cli-input-json file://b
 ====================================================================================================
 
 ====================================================================================================
-aws iam list-attached-role-policies --profile shibutrial --role-name sspoc_codebuild_role
+#get list of role-policies
+aws iam list-attached-role-policies --profile shibutrial --role-name sspoc_codebuild_role --output text
 
 aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
 aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
 aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
-aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 
-aws iam list-role-policies --profile shibutrial --role-name sspoc_codebuild_role
+#---------------------------------------
+#get list of role-policies
+aws iam list-role-policies --profile shibutrial --role-name sspoc_codebuild_role --output text
+
 aws iam delete-role-policy --profile shibutrial --role-name sspoc_codebuild_role --policy-name ss-poc-log-group-policy
-
-
+aws iam delete-role-policy --profile shibutrial --role-name sspoc_codebuild_role --policy-name sspoc_codebuild_get_auth_policy
+#---------------------------------------
+#delete role
 aws iam delete-role --profile shibutrial --role-name sspoc_codebuild_role
 
 ====================================================================================================
+#Get list of projects
+aws codebuild list-projects --profile shibutrial --output text
+
+
 #Delete project
-aws codebuild delete-project --profile shibutrial --name ss-poc-build
+aws codebuild delete-project --profile shibutrial --name "ss-poc-build-8"
 
 ====================================================================================================
