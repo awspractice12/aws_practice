@@ -1,17 +1,14 @@
 {
-    "name": "ss-poc-build",
+    "name": "ss-poc-build-8",
     "source": {
-        "type": "CODECOMMIT",
-        "location": "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-cloud-poc",
+        "type": "CODEPIPELINE",
+        "location": " ",
         "gitCloneDepth": 0,
-        "gitSubmodulesConfig": {
-            "fetchSubmodules": true
-        },
         "insecureSsl": true
     },
     "sourceVersion": "master",
     "artifacts": {
-        "type": "NO_ARTIFACTS"
+        "type": "CODEPIPELINE"
     },
     "environment": {
         "type": "LINUX_CONTAINER",
@@ -27,7 +24,7 @@
         "privilegedMode": true,
         "imagePullCredentialsType": "CODEBUILD"
     },
-    "serviceRole": "arn:aws:iam::732631625641:role/sspoc_codebuild_role",
+    "serviceRole": "arn:aws:iam::560773393352:role/sspoc_codebuild_role",
     "timeoutInMinutes": 60,
     "queuedTimeoutInMinutes": 60,
     "tags": [

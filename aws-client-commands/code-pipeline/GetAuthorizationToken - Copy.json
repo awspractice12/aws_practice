@@ -3,7 +3,7 @@
     "Statement": [
         {
             "Action": [
-                "ecr:*"
+                "ecr:GetAuthorizationToken"
             ],
             "Resource": "*",
             "Effect": "Allow"

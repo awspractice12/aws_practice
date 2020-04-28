@@ -32,10 +32,13 @@ Output:
         "Arn": "arn:aws:iam::560773393352:role/sspoc_codebuild_role",
 
 ====================================================================================================
+aws iam --profile shibutrial put-role-policy    --role-name sspoc_codebuild_role --policy-name sspoc_codebuild_get_auth_policy --policy-document file://GetAuthorizationToken.json
+
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
-aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 ====================================================================================================
 # First create a skeleton JSON for project creation...
 aws codebuild --profile shibutrial create-project --generate-cli-skeleton
