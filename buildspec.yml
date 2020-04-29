@@ -63,10 +63,12 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-#artifacts:
-  #files:
-    # - location
-    # - location
+artifacts:
+  files:
+    # - java-micro-service-projects/account-service/target/
+    # - java-micro-service-projects/customer-service/target/
+    # - java-micro-service-projects/
+    
   #name: $(date +%Y-%m-%d)
   #discard-paths: yes
   #base-directory: location

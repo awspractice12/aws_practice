@@ -1,3 +1,4 @@
+
 #====================================================================================================
 # From : 
 # https://medium.com/@jacobsteeves/aws-lambda-from-the-command-line-7efab7f3ebd9
@@ -34,7 +35,9 @@ aws iam create-role --profile shibutrial --role-name sspoc_basic_lambda_role --a
 #====================================================================================================
 #to enable logs in Cloud Watch
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+#aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRoleForLambda"
 
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/AWSCodePipelineFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
@@ -43,7 +46,7 @@ aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_r
 
 #create lambda function 
 
-aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 
+aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python3.8 
 
 #====================================================================================================
 
