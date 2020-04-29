@@ -1,5 +1,5 @@
 #====================================================================================================
 aws logs --profile shibutrial describe-log-groups --output text | awk '{print $4}'
 
-aws logs --profile shibutrial delete-log-groups --log-group-name ss-build4
+aws logs --profile shibutrial delete-log-group --log-group-name 
 
