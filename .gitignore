@@ -12,4 +12,8 @@ awsclient
 ss-cloud-poc3
 trace.out
 git-batch.bat
+output.txt
+*.pem
+sspoc_main.zip
+aws-provisioning.txt
 
