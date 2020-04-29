@@ -1,0 +1,1000 @@
+ 1011  ansible --version
+ 1012  cd ..
+ 1013  sudo mv zzzzzzzzzzzzzz/ /vagrant/
+ 1014  ls
+ 1015  sudo mv yyyyyyy/ /vagrant/
+ 1016  wget http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/a/ansible/ansible_2.9.6+dfsg-1_all.deb
+ 1017  mv ansible_2.9.6+dfsg-1_all.deb /vagrant/ansible/
+ 1018  cd /vagrant/ansible/
+ 1019  sudo dpkg -i *.deb
+ 1020  PACKAGE_TO_DOWNLOAD=python3-crypto 
+ 1021  apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $PACKAGE_TO_DOWNLOAD | grep "^\w")
+ 1022  PACKAGE_TO_DOWNLOAD=python3-distutils 
+ 1023  apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $PACKAGE_TO_DOWNLOAD | grep "^\w")
+ 1024  PACKAGE_TO_DOWNLOAD=python3-dnspython 
+ 1025  apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $PACKAGE_TO_DOWNLOAD | grep "^\w")
+ 1026  PACKAGE_TO_DOWNLOAD=python3-httplib2 
+ 1027  apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $PACKAGE_TO_DOWNLOAD | grep "^\w")
+ 1028  PACKAGE_TO_DOWNLOAD=python3-netaddr 
+ 1029  apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $PACKAGE_TO_DOWNLOAD | grep "^\w")
+ 1030  sudo dpkg -i *.deb
+ 1031  ansible --version
+ 1032  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\n' ' ')
+ 1033  aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\n' ' '
+ 1034  aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\n' ' '; echo
+ 1035  cd
+ 1036  vi hosts
+ 1037  ls -ltr
+ 1038  ansible -i hosts -m apt -a "name=derby-tools  state = latest" 
+ 1039  ls -al
+ 1040  ls -al .ssh/
+ 1041  ssh-keygen -t rsa -b4096
+ 1042  ssh-copy-id ubuntu3.20.232.54@
+ 1043  ssh-copy-id ubuntu@3.20.232.54
+ 1044  sudo ssh-copy-id ubuntu@3.20.232.54
+ 1045  ssh ubuntu@3.20.232.54
+ 1046  ls -al .ssh
+ 1047  ssh ubuntu@3.20.232.54
+ 1048  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].[InstanceId]" --output text | tr '\n' ' ')
+ 1049  aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].[InstanceId]" --output text 
+ 1050  aws ec2 run-instances --image-id ami-0fc20dd1da406780b --count 1 --instance-type t2.micro --key-name MyKeyPair2 --security-groups shibu-sg
+ 1051  aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\n' ' ' ; echo
+ 1052  ssh-copy-id --help
+ 1053  ssh-copy-id -i MyKeyPair2.pem ubuntu@3.22.100.32
+ 1054  ssh-copy-id --help
+ 1055  ssh -i MyKeyPair2.pem ubuntu@3.22.100.32
+ 1056  ssh-copy-id ubuntu@3.22.100.32
+ 1057  vi /etc/ssh/sshd_config
+ 1058  sudo vi /etc/ssh/sshd_config
+ 1059  ssh-copy-id ubuntu@3.22.100.32
+ 1060  sudo systemctl restart sshd
+ 1061  ssh-copy-id ubuntu@3.22.100.32
+ 1062  ssh-copy-id -o "ssh -i MyKeyPair2.pem ubuntu@3.22.100.32"
+ 1063  ssh-copy-id -o "ssh -i MyKeyPair2.pem" ubuntu@3.22.100.32
+ 1064  ssh-copy-id -o "-i MyKeyPair2.pem" ubuntu@3.22.100.32
+ 1065  ssh-add MyKeyPair2.pem 
+ 1066  cat ~/.ssh/id_rsa.pub | ssh -i MyKeyParir2.pem ubuntu@ip_address "cat - >> ~/.ssh/authorized_keys"
+ 1067  cat ~/.ssh/id_rsa.pub | ssh -i MyKeyPair2.pem ubuntu@ip_address "cat - >> ~/.ssh/authorized_keys"
+ 1068  cat ~/.ssh/id_rsa.pub | ssh -i MyKeyPair2.pem ubuntu@3.22.100.32 "cat - >> ~/.ssh/authorized_keys"
+ 1069  ssh ubuntu@3.22.100.32
+ 1070  ansible -i hosts -m apt -a "name=derby-tools  state = latest" 
+ 1071  ansible -i hosts -m apt -a "name=derby-tools  state=latest" 
+ 1072  ansible -i hosts -m apt -a "name=derby-tools  state=latest" ansible -i hosts -m apt -s -a "name=derby-tools  state=latest" 
+ 1073  ansible -i hosts -m apt -s -a "name=derby-tools  state=latest" 
+ 1074  ls -ltr
+ 1075  vi hosts 
+ 1076  ansible -i hosts -m apt -s -a "name=derby-tools  state=latest" 
+ 1077  ansible all -i hosts -m apt -s -a "name=derby-tools  state=latest" 
+ 1078  ansible all -i hosts -m apt -a "name=derby-tools  state=latest" 
+ 1079  vi hosts 
+ 1080  ansible all -i hosts -m apt -a "name=derby-tools  state=latest" 
+ 1081  ssh ubuntu@3.22.100.32
+ 1082  ansible all -i hosts -m apt -a "name=derby-tools  state=latest" 
+ 1083  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1084  ansible all -i hosts -m ping all
+ 1085  ansible all -i hosts -m ping 
+ 1086  ping 3.22.100.32
+ 1087  ssh ubuntu@3.22.100.32
+ 1088  ansible
+ 1089  ansible all -i hosts --become-user ubuntu -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1090  vi hosts 
+ 1091  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1092  vi hosts 
+ 1093  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1094  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv --ask-pass
+ 1095  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1096  ssh-agent bash
+ 1097  cd /vagrant/
+ 1098  cd
+ 1099  ssh-add MyKeyPair2.pem 
+ 1100  ansible all -i hosts -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1101  ansible all -i hosts  --become-user ubuntu -m apt -a "name=derby-tools  state=latest"  -vvv
+ 1102  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].[InstanceId]" --output text | tr '\n' ' ')
+ 1103  aws ec2 run-instances --image-id ami-0fc20dd1da406780b --count 1 --instance-type t2.micro --key-name MyKeyPair2 --security-groups shibu-sg
+ 1104  aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\n' ' ' ; echo
+ 1105  vi hosts 
+ 1106  sudo apt-get install sshpass -y
+ 1107  ssh-pass
+ 1108  sshpass
+ 1109  cat ~/.ssh/id_rsa.pub | ssh -i MyKeyPair2.pem ubuntu@18.220.108.175 "cat - >> ~/.ssh/authorized_keys"
+ 1110  ssh -i MyKeyPair2.pem ubuntu@18.220.108.175
+ 1111  ansible all -i hosts  --become-user ubuntu -a ping  -vvv
+ 1112  vi hosts 
+ 1113  ansible all -i hosts  --become-user ubuntu -a ping  -vvv
+ 1114  ansible all -i hosts  -u ubuntu -a ping  -vvv
+ 1115  ansible all -i hosts  -u ubuntu -a "ls -al"  -vvv
+ 1116  vi hosts 
+ 1117  ansible all -i hosts  -u ubuntu -a "ls -al"  -vvv
+ 1118  ansible all -i hosts  -u ubuntu -a "ls -al" 
+ 1119  ansible all -i hosts  -u ubuntu -m apt -a "name=derby-tools  state=latest" 
+ 1120  ansible all -i hosts  -u ubuntu -m apt-get -a "name=derby-tools  state=latest" 
+ 1121  ansible all -i hosts  -u ubuntu -m apt -a "name=apache2  state=latest" 
+ 1122  ansible all -i hosts  -u ubuntu -b -m apt -a "name=apache2  state=latest" 
+ 1123  ansible all -i hosts  -u ubuntu -b -m apt -a "name=derby-tools  state=latest" 
+ 1124  cat hosts 
+ 1125  ssh -i MyKeyPair2.pem ubuntu@18.220.108.175
+ 1126  ansible all -i hosts             -u ubuntu -b -a "sudo apt update"
+ 1127  ansible all -i hosts             -u ubuntu -b -a "apt update"
+ 1128  ansible all -i hosts  --become-user ubuntu -b -a "sudo apt update"
+ 1129  ansible
+ 1130  ansible all -i hosts -u ubuntu -m apt -a "name=derby-tools  state=latest"
+ 1131  ansible all -i hosts -u ubuntu -m apt -a "name=derby-tools  state=remove"
+ 1132  ansible all -i hosts -u ubuntu -m apt -a "name=derby-tools  state=absent"
+ 1133  ansible all -i hosts -u ubuntu -b -m apt -a "name=derby-tools  state=absent"
+ 1134  ansible all -i hosts -u ubuntu -b -m apt -a "name=derby-tools  state=latest"
+ 1135  ansible all -i hosts -u ubuntu -b -m apt -a "name=unzip        state=latest"
+ 1136  ansible all -i hosts -u ubuntu -b -m apt -a "name=jq           state=latest"
+ 1137  vi playbook.yaml
+ 1138  ansible-playbook -i playbook.yaml 
+ 1139  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1140  vi playbook.yaml
+ 1141  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1142  vi playbook.yaml
+ 1143  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1144  vi hosts 
+ 1145  vi playbook.yaml
+ 1146  vi hosts 
+ 1147  vi playbook.yaml
+ 1148  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1149  vi hosts 
+ 1150  vi playbook.yaml
+ 1151  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1152  vi hosts 
+ 1153  ansible --version
+ 1154  vi hosts 
+ 1155  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1156  vi playbook.yaml
+ 1157  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1158  vi playbook.yaml
+ 1159  vi hosts 
+ 1160  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1161  vi hosts 
+ 1162  ansible-playbook -i host -u ubuntu playbook.yaml 
+ 1163  ls -ltr
+ 1164  ansible-playbook -i hosts -u ubuntu playbook.yaml 
+ 1165  vi playbook.yaml 
+ 1166  vi hosts 
+ 1167  cp hosts hosts.bkp
+ 1168  vi hosts
+ 1169  ansible-playbook -i hosts -u ubuntu playbook.yaml 
+ 1170  ansible all -i ec2-hosts -u ubuntu           -a ping  -vvv
+ 1171  ansible all -i ec2-hosts -u ubuntu           -a "ls -al"  -vvv
+ 1172  ansible all -i ec2-hosts -u ubuntu -b        -a "apt update"
+ 1173  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters  "Name=instance-state-name,Values=pending,running,stopped,stopping" --query "Reservations[].Instances[].[InstanceId]" --output text | tr '\n' ' ')
+ 1174  ij
+ 1175  cd /sscloudpoc/
+ 1176  ll
+ 1177  cd kubernetes-manifests/
+ 1178  ll
+ 1179  cd /sscloudpoc/aws-client-commands/
+ 1180  ll
+ 1181  cd ec2
+ 1182  ll
+ 1183  ./40_create_ec2_instance.sh 
+ 1184  dos2unix
+ 1185  sudo apt-get install dos2unix -y
+ 1186  apt-get -f install
+ 1187  sudo apt-get -f install
+ 1188  sudo apt-get install dos2unix -y
+ 1189  dos2unix *
+ 1190  vi 40_create_ec2_instance.sh 
+ 1191  ./40_create_ec2_instance.sh 
+ 1192  ll
+ 1193  ./50_get_public_ipaddress.sh 
+ 1194  ssh -i ~/MyKeyPair2.pem ubunto@52.14.83.146
+ 1195  ssh -i ~/MyKeyPair2.pem ubuntu@52.14.83.146
+ 1196  ll
+ 1197  vi software_install_on_startup.txt 
+ 1198  ./40_create_ec2_instance.sh 
+ 1199  ll
+ 1200  cat 50_get_public_ipaddress.sh 
+ 1201  ./50_get_public_ipaddress.sh 
+ 1202  ssh -i ~/MyKeyPair2.pem ubuntu@3.18.223.248
+ 1203  vi software_install_on_startup.txt 
+ 1204  ll
+ 1205  ./70_terminate_instances.sh 
+ 1206  ./40_create_ec2_instance.sh 
+ 1207  ./50_get_public_ipaddress.sh 
+ 1208  ssh -i ~/MyKeyPair2.pem ubuntu@52.14.172.138
+ 1209  ll
+ 1210  vi 80_login_to_ec2.sh
+ 1211  chmod 755 80_login_to_ec2.sh 
+ 1212  ./80_login_to_ec2.sh 
+ 1213  ll
+ 1214  ./70_terminate_instances.sh 
+ 1215  ll
+ 1216  mv 30_port_enable.sh  30_ports_enable.sh 
+ 1217  ll
+ 1218  vi 40_create_ec2_instance.sh
+ 1219  ./40_create_ec2_instance.sh 
+ 1220  ./50_get_public_ipaddress.sh 
+ 1221  ./80_login_to_ec2.sh 
+ 1222  ll
+ 1223  ./70_terminate_instances.sh 
+ 1224  cp 70_terminate_instances.sh 70_terminate_instances_t2.micro.sh 
+ 1225  ll
+ 1226  rm 70_terminate_instances.sh
+ 1227  cp 70_terminate_instances_t2.micro.sh  70_terminate_instances_t3.micro.sh 
+ 1228  ll
+ 1229  vi 70_terminate_instances_t3.micro.sh
+ 1230  mv 40_create_ec2_instance.sh 40_create_ec2_instance_t2_micro.sh
+ 1231  ll
+ 1232  co 40_create_ec2_instance_t2_micro.sh 40_create_ec2_instance_t3_micro.sh
+ 1233  cp 40_create_ec2_instance_t2_micro.sh 40_create_ec2_instance_t3_micro.sh
+ 1234  vi 40_create_ec2_instance_t3_micro.sh
+ 1235  ll
+ 1236  rm 70_terminate_instances_t2.micro.sh
+ 1237  mv 70_terminate_instances_t3.micro.sh 70_terminate_instances.sh
+ 1238  ll
+ 1239  ./40_create_ec2_instance_t3_micro.sh 
+ 1240  ./50_get_public_ipaddress.sh 
+ 1241  ./80_login_to_ec2.sh 
+ 1242  ll
+ 1243  ./70_terminate_instances.sh 
+ 1244  ./40_create_ec2_instance_t3_micro.sh 
+ 1245  ./50_get_public_ipaddress.sh 
+ 1246  ./80_login_to_ec2.sh 
+ 1247  wget https://storage.googleapis.com/kubernetes-release/release/v1.1.3/kubernetes.tar.gz
+ 1248  wget https://dl.k8s.io/v1.18.2/kubernetes-server-linux-amd64.tar.gz
+ 1249  ACCOUNT_ID=732631625641
+ 1250  REGION=us-east-2
+ 1251  REPO_NAME=ss-cloud-poc-container-repo
+ 1252  aws ecr get-login-password --region $REGION | sudo docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+ 1253  REPO_NAME=ss-cloud-poc-container-repo
+ 1254  aws ecr delete-repository --repository-name $REPO_NAME --force
+ 1255  aws ecr create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1256  REPO_NAME=ss-cloud-poc-container-repo
+ 1257  aws ecr delete-repository --repository-name $REPO_NAME --force
+ 1258  aws ecr create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1259  curl abc.com
+ 1260  ij
+ 1261  cd /sscloudpoc/
+ 1262  ll
+ 1263  cd kubernetes-manifests/
+ 1264  ll
+ 1265  cd /vagrant/ec2/
+ 1266  ls
+ 1267  cd ..
+ 1268  ll
+ 1269  cd /sscloudpoc/aws-client-commands/ec2/
+ 1270  ll
+ 1271  ./80_login_to_ec2.sh 
+ 1272  vi 80_login_to_ec2.sh 
+ 1273  ./80_login_to_ec2.sh 
+ 1274  vi software_install_on_startup.txt 
+ 1275  ./80_login_to_ec2.sh 
+ 1276  cd /sscloudpoc/aws-client-commands/
+ 1277  cd ec2/
+ 1278  ll
+ 1279  ./80_login_to_ec2.sh 
+ 1280  ll
+ 1281  ./70_terminate_instances.sh 
+ 1282  ./40_create_ec2_instance_t3_micro.sh 
+ 1283  ./80_login_to_ec2.sh 
+ 1284  curl abc.com
+ 1285  ./80_login_to_ec2.sh 
+ 1286  ./50_get_public_ipaddress.sh 
+ 1287  ./80_login_to_ec2.sh 
+ 1288  vi 80_login_to_ec2.sh 
+ 1289  ./80_login_to_ec2.sh 
+ 1290  ll
+ 1291  ./70_terminate_instances.sh 
+ 1292  vi 40_create_ec2_instance_t
+ 1293  cp 40_create_ec2_instance_t3_micro.sh 40_create_ec2_instance_t2_xlarge.sh
+ 1294  vi 40_create_ec2_instance_t2_xlarge.sh
+ 1295  ./40_create_ec2_instance_t2_xlarge.sh
+ 1296  ./50_get_public_ipaddress.sh 
+ 1297  ./80_login_to_ec2.sh 
+ 1298  ll
+ 1299  ./50_get_public_ipaddress.sh 
+ 1300  ssh -i ~/MyKeyPair2.pem ubuntu@13.59.77.185
+ 1301  ll
+ 1302  ./70_terminate_instances.sh 
+ 1303  curl abc.com
+ 1304  aws ec2 run-instances --image-id ami-0fc20dd1da406780b --count 1 --instance-type t2.micro --key-name MyKeyPair2 --security-groups shibu-sg
+ 1305  ll
+ 1306  ./20_security_group_create.sh 
+ 1307  ./30_ports_enable_in_security_group.sh 
+ 1308  cat ./30_ports_enable_in_security_group.sh 
+ 1309  ./40_create_ec2_instance_t2_xlarge.sh 
+ 1310  vi 80_login_to_ec2.sh 
+ 1311  ./80_login_to_ec2.sh 
+ 1312  ACCOUNT_ID=732631625641
+ 1313  REGION=us-east-2
+ 1314  REPO_NAME=ss-cloud-poc-container-repo
+ 1315  aws ecr get-login-password --region $REGION | sudo docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+ 1316  aws ecr delete-repository --repository-name $REPO_NAME --force
+ 1317  aws ecr create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1318  REPO_NAME=ss-cloud-poc-container-repo
+ 1319  aws ecr delete-repository --repository-name $REPO_NAME --force
+ 1320  aws ecr create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1321  cd /sscloudpoc/aws-client-commands/ec2/
+ 1322  ll
+ 1323  ./70_terminate_instances.sh 
+ 1324  ll
+ 1325  vi 40_create_ec2_instance_t2_xlarge.sh 
+ 1326  vi software_install_on_startup.txt 
+ 1327  ./70_terminate_instances.sh 
+ 1328  ./40_create_ec2_instance_t2_xlarge.sh 
+ 1329  ./80_login_to_ec2.sh 
+ 1330  ls -al
+ 1331  vi .bashrc
+ 1332  cd /vagrant/
+ 1333  vi startup.sh 
+ 1334  cd /sscloudpoc/aws-client-commands/ec2/
+ 1335  ./80_login_to_ec2.sh 
+ 1336  cd ../aws-client-commands/ec2/
+ 1337  ./80_login_to_ec2.sh 
+ 1338  cd /sscloudpoc/aws-client-commands/ec2/
+ 1339  ll
+ 1340  ./70_terminate_instances.sh 
+ 1341  ./60_instance_id_display.sh 
+ 1342  ./40_create_ec2_instance_t2_xlarge.sh 
+ 1343  ./80_login_to_ec2.sh 
+ 1344  ./70_terminate_instances.sh 
+ 1345  ll
+ 1346  ./40_create_ec2_instance_t2_xlarge.sh
+ 1347  cd /sscloudpoc/aws-client-commands/ec2/
+ 1348  cat ec2-hosts 
+ 1349  cd /sscloudpoc/aws-client-commands/ec2/
+ 1350  ll
+ 1351  mv 40_create_ec2_instance_t2_xlarge.sh 40_create_ec2_instance_t3_xlarge.sh
+ 1352  vi 40_create_ec2_instance_t3_xlarge.sh
+ 1353  vi 50_get_public_ipaddress.sh
+ 1354  vi 80_login_to_ec2.sh
+ 1355  vi 40_create_ec2_instance_t3_xlarge.sh
+ 1356  vi ./50_get_public_ipaddress.sh
+ 1357  ll
+ 1358  curl abc.com
+ 1359  ./40_create_ec2_instance_t3_xlarge.sh 
+ 1360  ls -ltr
+ 1361  cat ec2-hosts
+ 1362  vi 80_login_to_ec2.sh
+ 1363  ./80_login_to_ec2.sh 
+ 1364  ll
+ 1365  vi software_install_on_startup.txt
+ 1366  aws
+ 1367  ll
+ 1368  vi 40_create_ec2_instance_t3_xlarge.sh
+ 1369  ./80_login_to_ec2.sh 
+ 1370  ./70_terminate_instances.sh 
+ 1371  cd /sscloudpoc/aws-client-commands/ec2
+ 1372  ./70_terminate_instances.sh 
+ 1373  ll
+ 1374  ./70_terminate_instances.sh 
+ 1375  curl abc.com
+ 1376  cd /sscloudpoc/aws-client-commands/ec2/
+ 1377  ./80_login_to_ec2.sh 
+ 1378  cat ec2-hosts 
+ 1379  curl https://checkip.amazonaws.com
+ 1380  curl abc.com
+ 1381  cd /sscloudpoc/aws-client-commands/ec2/
+ 1382  ll
+ 1383  ./60_instance_id_display.sh 
+ 1384  ./40_create_ec2_instance_t3_xlarge.sh 
+ 1385  scp 10_keypair_generate.sh ubuntu@3.15.213.201
+ 1386  scp
+ 1387  scp 10_keypair_generate.sh ubuntu@3.15.213.201
+ 1388  ./80_login_to_ec2.sh 
+ 1389  ll
+ 1390  rm ubuntu@3.15.213.201 
+ 1391  man scp
+ 1392  scp -i ~/MyKeyPair2.pem 10_keypair_generate.sh ubuntu@3.15.213.201
+ 1393  ll
+ 1394  tm ubuntu@3.15.213.201 
+ 1395  rm ubuntu@3.15.213.201 
+ 1396  ll
+ 1397  scp -i ~/MyKeyPair2.pem ec2-hosts  ubuntu@3.15.213.201
+ 1398  ll
+ 1399  rm ubuntu@3.15.213.201 
+ 1400  ll
+ 1401  scp -i ~/MyKeyPair2.pem ec2-hosts  ubuntu@3.15.213.201:~
+ 1402  ./80_login_to_ec2.sh 
+ 1403  ./70_terminate_instances.sh 
+ 1404  cd /sscloudpoc/aws-client-commands/ec2/
+ 1405  ll
+ 1406  vi 40_create_ec2_instance_t2_micro.sh 
+ 1407  scp bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_alias
+ 1408  scp -i ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_alias
+ 1409  vi 40_create_ec2_instance_t2_micro.sh 
+ 1410  vi 40_create_ec2_instance_t3_micro.sh 
+ 1411  vi 40_create_ec2_instance_t3_xlarge.sh 
+ 1412  ./80_login_to_ec2.sh 
+ 1413  vi 40_create_ec2_instance_t2_micro.sh 
+ 1414  vi 40_create_ec2_instance_t3_micro.sh 
+ 1415  vi 40_create_ec2_instance_t3_xlarge.sh 
+ 1416  ./80_login_to_ec2.sh 
+ 1417  vi software_install_on_startup.txt 
+ 1418  ll
+ 1419  dos2unix bash_alias.txt 
+ 1420  ll
+ 1421  cat 40_create_ec2_instance_t2_micro.sh 
+ 1422  scp  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1423  ll
+ 1424  cat ec2-hosts 
+ 1425  scp  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1426  rm ec2-hosts 
+ 1427  ./70_terminate_instances.sh 
+ 1428  ./40_create_ec2_instance_t3_xlarge.sh
+ 1429  ./80_login_to_ec2.sh 
+ 1430  ll
+ 1431  cat 40_create_ec2_instance_t2_micro.sh 
+ 1432  scp  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1433  man scp
+ 1434  cat 80_login_to_ec2.sh 
+ 1435  vi 40_create_ec2_instance_t2_micro.sh 
+ 1436  scp  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1437  scp  -o "StrictHostKeyChecking no"  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1438  scp  -i  ~/MyKeyPair2.pem bash_alias.txt ubuntu@`cat ec2-hosts`:.bash_aliases
+ 1439  sed '/scp/scp -i/g' *.sh
+ 1440  sed 's/scp/scp -i/g' *.sh
+ 1441  sed 's/scp/scp -i/g' *.shgrep scp *sh
+ 1442  grep scp *.sh
+ 1443  sed 's/scp/scp -i/g' *sh
+ 1444  sed 's/scp/scp\ -i/g' *sh
+ 1445  sed 's/scp/scp-i/g' *sh
+ 1446  sed 's/scp/scp -i/g' *sh
+ 1447  sed -i 's/scp/scp -i/g' *sh
+ 1448  vi 40_create_ec2_instance_t2_micro.sh 
+ 1449  ./80_login_to_ec2.sh 
+ 1450  ll
+ 1451  ./70_terminate_instances.sh 
+ 1452  ./7
+ 1453  ./70_terminate_instances.sh 
+ 1454  curl abc.com
+ 1455  cd /sscloudpoc/aws-client-commands/ec2/
+ 1456  ll
+ 1457  ./60_instance_id_display.sh 
+ 1458  ll aws-client-EC2-command-line-usage.txt 
+ 1459  vi aws-client-EC2-command-line-usage.txt 
+ 1460  rm aws-client-EC2-command-line-usage.txt 
+ 1461  ll
+ 1462  mv 40_create_ec2_instance_t3_micro.sh 41_create_ec2_instance_t3_micro.sh
+ 1463  ll
+ 1464  mv 40_create_ec2_instance_t3_xlarge.sh 42_create_ec2_instance_t3_xlarge.sh
+ 1465  ll
+ 1466  mv bash_alias.txt bash_aliases.txt 
+ 1467  grep alias *
+ 1468  grep bash *
+ 1469  grep bash_alias.txt *
+ 1470  sed 's/bash_alias.txt/bash_aliases.txt/g' *
+ 1471  sed 's/bash_alias.txt/bash_aliases.txt/g' 4*
+ 1472  sed -i 's/bash_alias.txt/bash_aliases.txt/g' 4*
+ 1473  sed 's/bash_alias.txt/bash_aliases.txt/g' 4*
+ 1474  vi 41_create_ec2_instance_t3_micro.sh 
+ 1475  ll
+ 1476  mv 70_terminate_instances.sh 80_terminate_instances.sh 
+ 1477  ll
+ 1478  mv 80_login_to_ec2.sh 70_login_to_ec2.sh
+ 1479  ll
+ 1480  cat 10_keypair_generate.sh 
+ 1481  cp ~/MyKeyPair2.pem .
+ 1482  ll
+ 1483  vi a
+ 1484  ll
+ 1485  rm a
+ 1486  rm MyKeyPair2.pem 
+ 1487  ll
+ 1488  git add *sh
+ 1489  git status .
+ 1490  git add *txt
+ 1491  git status .
+ 1492  git commit -m "aws ec2 command line scripts"
+ 1493  git config --global user.email "shibu@shibu.com"
+ 1494  git commit -m "aws ec2 command line scripts"
+ 1495  git push
+ 1496  ll
+ 1497  ./60_instance_id_display.sh 
+ 1498  ll
+ 1499  kubectl 
+ 1500  cd /sscloudpoc/aws-client-commands/
+ 1501  cd ec2/
+ 1502  ll
+ 1503  ./40_create_ec2_instance_t2_micro.sh 
+ 1504  ll
+ 1505  ./41_create_ec2_instance_t3_micro.sh 
+ 1506  curl abc.com
+ 1507  aws
+ 1508  cd /sscloudpoc/aws-client-commands/ec2/
+ 1509  ll
+ 1510  cat 41_create_ec2_instance_t3_micro.sh
+ 1511  curl abc.com
+ 1512  cd /sscloudpoc/aws-client-commands/ec2/
+ 1513  ./41_create_ec2_instance_t3_micro.sh 
+ 1514  ./70_login_to_ec2.sh 
+ 1515  ./80_terminate_instances.sh 
+ 1516  curl abc.com
+ 1517  which kubectl 
+ 1518  cd
+ 1519  curl abc.com
+ 1520  aws
+ 1521  aws configure
+ 1522  aws lambda list-functions
+ 1523  cd /vagrant/
+ 1524  ll
+ 1525  mkdir lambda_functions
+ 1526  cd lambda_functions/
+ 1527  ll
+ 1528  vi main.py
+ 1529  zip main.zip main.py 
+ 1530  sudo apt-get install zip -y
+ 1531  zip main.zip main.py 
+ 1532  ls
+ 1533  aws iam create-group --group-name sspoc_lambda_group
+ 1534  aws iam create-user --user-name sspoc_lambda_user
+ 1535  aws iam add-user-to-group --user-name sspoc_lambda_user --group-name sspoc_lambda_group
+ 1536  aws iam create-login-profile --user-name sspoc_lambda_user --password sspo.Nalla,pw
+ 1537  aws iam create-access-key --user-name sspoc_lambda_user
+ 1538  vi sspoc_lambda_policy.json
+ 1539  aws iam put-user-policy --user-name sspoc_lambda_user --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+ 1540  aws configure --profile sspoc_lambda_user
+ 1541  aws ec2  describe-regions
+ 1542  vi sspoc_basic_lambda_role.json
+ 1543  aws iam create-role --role-name sspoc_basic_lambda_role --assume-role-policy-document file://sspoc_basic_lambda_role.json
+ 1544  ll
+ 1545  mv main.py  sspoc_main.py
+ 1546  zip sspoc_main.zip sspoc_main.py
+ 1547  ll
+ 1548  rm main.zip 
+ 1549  unzip -l sspoc_main.zip 
+ 1550  aws lambda create-function \ 
+ 1551  --region us-east-2 --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role"--handler main.add --runtime python2.7 --profile sspoc_lambda_user
+ 1552  aws lambda create-function \ 
+ 1553  aws lambda create-function --region us-east-2 --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler main.add --runtime python2.7 --profile sspoc_lambda_user
+ 1554  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload '{"a":1, "b":2 }' --profile sspoc_lambda_user outputfile.txt
+ 1555  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --profile sspoc_lambda_user outputfile.txt
+ 1556  ltr
+ 1557  ls -ltr
+ 1558  cat outputfile.txt 
+ 1559  aws lambda create-function --region us-east-2 --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 --profile sspoc_lambda_user
+ 1560  aws lambda delete-function --function-name add
+ 1561  aws lambda create-function --region us-east-2 --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 --profile sspoc_lambda_user
+ 1562  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --profile sspoc_lambda_user outputfile.txt
+ 1563  cat outputfile.txt 
+ 1564  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload '{"a":1, "b":2 }' --profile sspoc_lambda_user outputfile.txt
+ 1565  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload "{'a':1, 'b':2 }" --profile sspoc_lambda_user outputfile.txt
+ 1566  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload "{'a': 1, 'b': 2 }" --profile sspoc_lambda_user outputfile.txt
+ 1567  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload '{"a": 1, "b": 2 }' --profile sspoc_lambda_user outputfile.txt
+ 1568  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload '{a: 1, b: 2 }' --profile sspoc_lambda_user outputfile.txt
+ 1569  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload '{"a": 1, "b": 2 }' --profile sspoc_lambda_user outputfile.txt
+ 1570  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": 1, "b": 2 }' outputfile.txt
+ 1571  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "1", "b": "2" }' outputfile.txt
+ 1572  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "1", "b": "2" }' outputfile.txt
+ 1573  vi req.json
+ 1574  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload value req.json outputfile.txt
+ 1575  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload value req.json
+ 1576  vi req.json
+ 1577  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload value req.json
+ 1578  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "1", "b": "2" }' outputfile.json
+ 1579  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "1", "b": "2" }' --output text 
+ 1580  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "1", "b": "2" }' --output text  out
+ 1581  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user  --output text  out
+ 1582  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload '{"a": "'"1"'", "b": "'"2"'" }' --output text  out
+ 1583  ltr
+ 1584  ls -ltr
+ 1585  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload file://req.json --output text  out
+ 1586  vi req.json 
+ 1587  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload file://req.json --output text  out
+ 1588  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://req.json --output text  out
+ 1589  cat out
+ 1590  aws lambda invoke --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://req.json output.txt
+ 1591  cat output
+ 1592  cat output.txt 
+ 1593  ls -ltr
+ 1594  rm out outputfile.txt 
+ 1595  ll
+ 1596  mv req.json request.json
+ 1597  aws lambda invoke --type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1598  cat output.txt
+ 1599  aws lambda invoke --typerequesttype RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1600  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1601  cat output.txt 
+ 1602  vi request.json 
+ 1603  cat output.txt 
+ 1604  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1605  cat output.txt 
+ 1606  cat output.txt && echo
+ 1607  aws configure
+ 1608  aws codecommit create-repository --repository-name ss-poc-repo --repository-description "My demonstration repository"
+ 1609  curl abc.com
+ 1610  ls -al
+ 1611  cd .aws
+ 1612  ll
+ 1613  cat config 
+ 1614  cat credentials 
+ 1615  cd
+ 1616  aws codecommit create-repository --repository-name ss-poc-repo --repository-description "ss poc repository" 
+ 1617  aws configure --profile shibuadmin
+ 1618  aws codecommit --profile shibuadmin create-repository --repository-name ss-poc-repo --repository-description "ss poc repository"
+ 1619  aws codecommit --profile shibuadmin list-repositories
+ 1620  aws codecommit --profile shibuadmin list-repositories --output text
+ 1621  aws codecommit --profile shibuadmin get-repository --repository-name "ss-cloud-poc"
+ 1622  aws codecommit --profile shibuadmin delete-repository --repository-name ss-poc-repo
+ 1623  aws codebuild --profile shibuadmin help
+ 1624  aws codebuild --profile shibuadmin list-builds
+ 1625  aws codebuild --profile shibuadmin list-projects
+ 1626  aws codebuild --profile shibuadmin create-projects --generate-cli-skeleton
+ 1627  aws codebuild --profile shibuadmin create-project --generate-cli-skeleton
+ 1628  aws codebuild --profile shibuadmin delete-builds --help
+ 1629  aws codebuild --profile shibuadmin batchdelete-builds --help
+ 1630  aws codebuild --profile shibuadmin batch-delete-builds --help
+ 1631  aws codebuild --profile shibuadmin batch-delete-builds help
+ 1632  aws codebuild --profile shibuadmin list-builds
+ 1633  aws codebuild --profile shibuadmin batch-delete-builds --ids  "ss-cloud-poc-java-build2:ab55aa93-67ab-4fdf-842e-71cbd8eebfb9"
+ 1634  aws codebuild --profile shibuadmin list-builds
+ 1635  aws codebuild --profile shibuadmin batch-delete-builds help
+ 1636  aws codebuild --profile shibuadmin batch-delete-builds --generate-cli-skeleton
+ 1637  aws codebuild --profile shibuadmin batch-delete-builds help
+ 1638  aws codebuild --profile shibuadmin batch-delete-builds --cli-input-json
+ 1639  vi x
+ 1640  aws codebuild --profile shibuadmin batch-delete-builds --cli-input-json file://x
+ 1641  aws codebuild --profile shibuadmin list-builds
+ 1642  vi x
+ 1643  aws codebuild --profile shibuadmin batch-delete-builds --cli-input-json file://x
+ 1644  aws codebuild --profile shibuadmin list-builds
+ 1645  vi cr-pr.json
+ 1646  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1647  vi cr-pr.json
+ 1648  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1649  vi cr-pr.json
+ 1650  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1651  vi cr-pr.json
+ 1652  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1653  vi cr-pr.json
+ 1654  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1655  vi cr-pr.json
+ 1656  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1657  vi cr-pr.json
+ 1658  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1659  vi cr-pr.json
+ 1660  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1661  vi cr-pr.json
+ 1662  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1663  vi cr-pr.json
+ 1664  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1665  vi cr-pr.json
+ 1666  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1667  vi cr-pr.json
+ 1668  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1669  vi cr-pr.json
+ 1670  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1671  history 
+ 1672  aws codebuild --profile shibuadmin create-project --generate-cli-skeleton
+ 1673  vi cr-pr.json
+ 1674  aws codebuild --profile shibuadmin create-project --generate-cli-skeleton
+ 1675  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1676  vi cr-pr.json
+ 1677  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1678  vi cr-pr.json
+ 1679  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1680  vi cr-pr.json
+ 1681  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1682  aws codebuild list-curated-environment-images
+ 1683  vi cr-pr.json
+ 1684  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1685  vi cr-pr.json
+ 1686  aws codebuild --profile shibuadmin create-project --cli-input-json file://cr-pr.json
+ 1687  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1688  vi request.json
+ 1689  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1690  cat output.txt 
+ 1691  cat output.txt  ; echo
+ 1692  vi request.json 
+ 1693  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile sspoc_lambda_user --payload fileb://request.json output.txt
+ 1694  cat output.txt  ; echo
+ 1695  vi request.json 
+ 1696  vi sspoc_main.py
+ 1697  zip sspoc_main.zip sspoc_main.py
+ 1698  ls
+ 1699  ls -ltr
+ 1700  vi sspoc_lambda_policy.json
+ 1701  aws iam put-user-policy --user-name shibuadmin --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+ 1702  aws configure
+ 1703  aws iam put-user-policy --profile shibuadmin --user-name shibuadmin --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+ 1704  vi vi sspoc_basic_lambda_role.json
+ 1705  vi sspoc_basic_lambda_role.json
+ 1706  rm vi 
+ 1707  vi sspoc_basic_lambda_role.json
+ 1708  aws iam create-role  --profile shibuadmin --role-name sspoc_basic_lambda_role --assume-role-policy-document file://sspoc_basic_lambda_role.json
+ 1709  aws lambda create-function --region us-east-2 --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::732631625641:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 --profile shibuadmin
+ 1710  ls -ltr
+ 1711  aws lambda invoke --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail  --profile shibuadmin --payload fileb://request.json output.txt
+ 1712  cat output.txt && echo
+ 1713  curl abc.com
+ 1714  vi .aws/config 
+ 1715  vi .aws/credentials 
+ 1716  aws codecommit --profile shibutrial delete-repository --repository-name ss-poc-repo
+ 1717  aws codecommit --profile shibutrial create-repository --repository-name ss-poc-repo
+ 1718  aws iam create-group --group-name git-repo-access-group
+ 1719  aws iam --profile shibutrial create-group --group-name git-repo-access-group
+ 1720  aws iam --profile shibutrial create-user --user-name shibu
+ 1721  aws iam --profile shibutrial create-user --user-name arun
+ 1722  aws iam --profile shibutrial create-user --user-name srikar
+ 1723  aws iam --profile shibutrial create-user --user-name srini
+ 1724  aws iam --profile shibutrial create-user --help
+ 1725  aws iam --profile shibutrial create-user help
+ 1726  aws iam --profile shibutrial create-user --generate-cli-skeleton
+ 1727  aws iam --profile shibutrial add-user-to-group --user-name shibu  --group-name git-repo-access-group
+ 1728  aws iam --profile shibutrial add-user-to-group --user-name arun   --group-name git-repo-access-group
+ 1729  aws iam --profile shibutrial add-user-to-group --user-name srikar --group-name git-repo-access-group
+ 1730  aws iam --profile shibutrial add-user-to-group --user-name srini  --group-name git-repo-access-group
+ 1731  aws iam --profile shibutrial attach-role-policy --role-name git-repo-access-group --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
+ 1732  aws iam --profile shibutrial attach-group-policy --group-name git-repo-access-group --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
+ 1733  aws iam --profile shibutrial create-login-profile help
+ 1734  aws iam --profile shibutrial create-login-profile --password-reset-required --user-name shibu  --password shibu97579
+ 1735  aws iam --profile shibutrial create-login-profile --password-reset-required --user-name arun   --password arun087756
+ 1736  aws iam --profile shibutrial create-login-profile --password-reset-required --user-name srikar --password srikar8204
+ 1737  aws iam --profile shibutrial create-login-profile --password-reset-required --user-name srini  --password srini83398
+ 1738  #====================================================================================================
+ 1739  # Create a new user to use for Lambda functions.
+ 1740  # If you want to create the functions for the current user, then you can skip it
+ 1741  # ----------------------------------------------------
+ 1742  # Create a user group 'git-repo-access-group'
+ 1743  aws iam --profile shibutrial create-group --group-name git-repo-access-group
+ 1744  aws iam --profile shibutrial create-access-key --user-name shibu
+ 1745  vi allow-user-to-change-password-policy.json
+ 1746  aws iam --profile shibutrial put-user-policy --user-name shibu --policy-document file://allow-user-to-change-password-policy.json
+ 1747  aws iam --profile shibutrial put-user-policy --user-name shibu  --policy-name user_change_password_policy --policy-document file://allow-user-to-change-password-policy.json
+ 1748  curl abc.com
+ 1749  curl ft.com
+ 1750  curl abc.com
+ 1751  ll
+ 1752  ltr
+ 1753  ls -ltr
+ 1754  cd /sscloudpoc/
+ 1755  git status
+ 1756  git diff java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/data/entity/Customer.java
+ 1757  dos2unix   java-micro-service-projects/account-service/Dockerfile
+ 1758  dos2unix   java-micro-service-projects/account-service/pom-docker-build.xml
+ 1759  dos2unix   java-micro-service-projects/account-service/pom.xml
+ 1760  dos2unix   java-micro-service-projects/account-service/r.bat
+ 1761  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/AccountApplication.java
+ 1762  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/service/AccountService.java
+ 1763  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/util/Util.java
+ 1764  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/data/entity/Account.java
+ 1765  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/data/repository/AccountRepository.java
+ 1766  dos2unix   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/web/service/AccountServiceController.java
+ 1767  dos2unix   java-micro-service-projects/account-service/src/main/resources/account_data.sql
+ 1768  dos2unix   java-micro-service-projects/account-service/src/test/java/com/sscloudpoc/account/web/service/JDBCTest.java.txt
+ 1769  dos2unix   java-micro-service-projects/account-service/src/test/java/com/sscloudpoc/account/web/service/RouteServiceControllerTest.java.txt
+ 1770  dos2unix   java-micro-service-projects/common-objects/pom.xml
+ 1771  dos2unix   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/account/business/domain/AccountListTO.java
+ 1772  dos2unix   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/account/business/domain/AccountTO.java
+ 1773  dos2unix   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/customer/business/domain/CustomerListTO.java
+ 1774  dos2unix   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/customer/business/domain/CustomerTO.java
+ 1775  dos2unix   java-micro-service-projects/customer-service/Dockerfile
+ 1776  dos2unix   java-micro-service-projects/customer-service/pom-docker-build.xml
+ 1777  dos2unix   java-micro-service-projects/customer-service/pom.xml
+ 1778  dos2unix   java-micro-service-projects/customer-service/r.bat
+ 1779  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/CustomerApplication.java
+ 1780  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/business/service/CustomerService.java
+ 1781  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/business/util/Util.java
+ 1782  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/data/entity/Customer.java
+ 1783  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/data/repository/CustomerRepository.java
+ 1784  dos2unix   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/web/service/CustomerServiceController.java
+ 1785  dos2unix   java-micro-service-projects/customer-service/src/main/resources/customer_data.sql
+ 1786  dos2unix   java-micro-service-projects/customer-service/src/test/java/com/metroservice/route/web/service/JDBCTest.java.txt
+ 1787  dos2unix   java-micro-service-projects/customer-service/src/test/java/com/metroservice/route/web/service/RouteServiceControllerTest.java.txt
+ 1788  dos2unix   java-micro-service-projects/pom.xml
+ 1789  dos2unix   java-micro-service-projects/testing-urls.txt
+ 1790  git status
+ 1791  git diff java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/business/service/CustomerService.java
+ 1792  clear
+ 1793  git status
+ 1794  git diff java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/service/AccountService.java
+ 1795  vi java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/service/AccountService.java
+ 1796  dos2unix   .gitignore
+ 1797  git status
+ 1798  cear
+ 1799  clear
+ 1800  git status
+ 1801  git diff java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/data/entity/Account.java
+ 1802  git add   .gitignore
+ 1803  git add   java-micro-service-projects/account-service/Dockerfile
+ 1804  git add   java-micro-service-projects/account-service/pom-docker-build.xml
+ 1805  git add   java-micro-service-projects/account-service/pom.xml
+ 1806  git add   java-micro-service-projects/account-service/r.bat
+ 1807  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/AccountApplication.java
+ 1808  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/service/AccountService.java
+ 1809  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/business/util/Util.java
+ 1810  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/data/entity/Account.java
+ 1811  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/data/repository/AccountRepository.java
+ 1812  git add   java-micro-service-projects/account-service/src/main/java/com/sscloudpoc/account/web/service/AccountServiceController.java
+ 1813  git add   java-micro-service-projects/account-service/src/main/resources/account_data.sql
+ 1814  git add   java-micro-service-projects/account-service/src/test/java/com/sscloudpoc/account/web/service/JDBCTest.java.txt
+ 1815  git add   java-micro-service-projects/account-service/src/test/java/com/sscloudpoc/account/web/service/RouteServiceControllerTest.java.txt
+ 1816  git add   java-micro-service-projects/common-objects/pom.xml
+ 1817  git add   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/account/business/domain/AccountListTO.java
+ 1818  git add   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/account/business/domain/AccountTO.java
+ 1819  git add   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/customer/business/domain/CustomerListTO.java
+ 1820  git add   java-micro-service-projects/common-objects/src/main/java/com/sscloudpoc/customer/business/domain/CustomerTO.java
+ 1821  git add   java-micro-service-projects/customer-service/Dockerfile
+ 1822  git add   java-micro-service-projects/customer-service/pom-docker-build.xml
+ 1823  git add   java-micro-service-projects/customer-service/pom.xml
+ 1824  git add   java-micro-service-projects/customer-service/r.bat
+ 1825  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/CustomerApplication.java
+ 1826  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/business/service/CustomerService.java
+ 1827  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/business/util/Util.java
+ 1828  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/data/entity/Customer.java
+ 1829  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/data/repository/CustomerRepository.java
+ 1830  git add   java-micro-service-projects/customer-service/src/main/java/com/sscloudpoc/customer/web/service/CustomerServiceController.java
+ 1831  git add   java-micro-service-projects/customer-service/src/main/resources/customer_data.sql
+ 1832  git add   java-micro-service-projects/customer-service/src/test/java/com/metroservice/route/web/service/JDBCTest.java.txt
+ 1833  git add   java-micro-service-projects/customer-service/src/test/java/com/metroservice/route/web/service/RouteServiceControllerTest.java.txt
+ 1834  git add   java-micro-service-projects/pom.xml
+ 1835  git add   java-micro-service-projects/testing-urls.txt
+ 1836  git status
+ 1837  git diff aws-client-commands/00-aws-things-to-install-on-new-install.txt
+ 1838  git add aws-client-commands/00-aws-things-to-install-on-new-install.txt
+ 1839  git diff aws-client-commands/ansible-commands.txt
+ 1840  git add aws-client-commands/ansible-commands.txt
+ 1841  git add aws-client-commands/00-aws-things-to-install-on-new-install.txt
+ 1842  git status
+ 1843  git diff aws-client-commands/aws-client-ECR-repository-command-line-usage.txt
+ 1844  git add aws-client-commands/aws-client-ECR-repository-command-line-usage.txt
+ 1845  git diff aws-client-commands/aws-client-ECS-containers-command-line-usage.txt
+ 1846  git add aws-client-commands/aws-client-ECS-containers-command-line-usage.txt
+ 1847  git add aws-client-commands/aws-client-S3-bucket-command-line-usage.txt
+ 1848  gstat
+ 1849  git status
+ 1850  git commit -m "line endings"
+ 1851  git status
+ 1852  git add .gitattributes
+ 1853  git commit -m "line endings"
+ 1854  git status
+ 1855  git add aws-client-commands/code-commit/ aws-client-commands/lambda/
+ 1856  git status
+ 1857  git add aws-client-commands/code-build/assume_role.json aws-client-commands/code-build/codebuild-commands.txt aws-client-commands/code-build/create-codebuild-project.json 
+ 1858  git status
+ 1859  ll docker
+ 1860  ll docker_build/
+ 1861  cat docker_build/aws-provisioning.txt 
+ 1862  git commit -m "code commit, code build, lambda scripts"
+ 1863  git status
+ 1864  git push
+ 1865  ~-0i765r1244809-=~
+ 1866  git status
+ 1867  aws codecommit help
+ 1868  aws iam help
+ 1869  aws iam create-service-specific-credential help
+ 1870  aws iam --profile shibutrial create-service-specific-credential --user-name shibu1 --service-name codecommit.amazonaws.com
+ 1871  aws iam --profile shibutrial create-service-specific-credential --user-name shibu --service-name codecommit.amazonaws.com
+ 1872  aws codecommit --profile shibutrial delete-repository --repository-name ss-poc-repo
+ 1873  aws codecommit --profile shibutrial create-repository --repository-name ss-poc-repo
+ 1874  git clone "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo"
+ 1875  ls -al
+ 1876  git remote  set-url origin "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo"
+ 1877  git push
+ 1878  git status
+ 1879  git remote  set-url origin https://shibu-at-560773393352:FWErUDXLSs%2F9Y9QhdN4Ku8KJb2e4vFAfdJFAvoRQHkY=@git-codecommit.us-east-2.amazonaws.com/v1/repos/ss-poc-repo
+ 1880  git pull
+ 1881  cd
+ 1882  ll
+ 1883  ls -ltr
+ 1884  cd codebuild/
+ 1885  ls -ltr
+ 1886  vi create-codebuild-project.json
+ 1887  ll
+ 1888  aws iam create-role --profile shibutrial --role-name sspoc_codebuild_role --assume-role-policy-document file://assume_role.json
+ 1889  aws iam delete-role --profile shibutrial --role-name sspoc_codebuild_role 
+ 1890  aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+ 1891  aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+ 1892  aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+ 1893  aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+ 1894  aws iam delete-role --profile shibutrial --role-name sspoc_codebuild_role
+ 1895  aws iam list-attached-role-policies --profile shibutrial --role-name sspoc_codebuild_role
+ 1896  vi assume_role.json 
+ 1897  aws iam list-attached-role-policies --profile shibutrial --role-name sspoc_codebuild_role
+ 1898  aws iam list-role-policies --profile shibutrial --role-name sspoc_codebuild_role
+ 1899  aws iam detach-role-policy --profile shibutrial --role-name sspoc_codebuild_role --policy-name ss-poc-log-group-policy
+ 1900  aws iam get-role-policy    --profile shibutrial --role-name sspoc_codebuild_role --policy-name ss-poc-log-group-policy
+ 1901  aws iam delete-role-policy    --profile shibutrial --role-name sspoc_codebuild_role --policy-name ss-poc-log-group-policy
+ 1902  aws iam delete-role --profile shibutrial --role-name sspoc_codebuild_role
+ 1903  aws codebuild --profile shibutrial list-projects
+ 1904  aws iam create-role --profile shibutrial --role-name sspoc_codebuild_role --assume-role-policy-document file://assume_role.json
+ 1905  aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+ 1906  aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+ 1907  aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+ 1908  aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+ 1909  aws codebuild --profile shibutrial create-project --cli-input-json file://create-codebuild-project.json
+ 1910  vi create-codebuild-project.json 
+ 1911  aws iam delete-project --profile shibutrial --project-name ss-poc-build
+ 1912  aws iam delete-project --profile shibutrial --project-name ss-poc-buildaws codebuild delete-project --profile shibutrial --project-name ss-poc-build
+ 1913  aws codebuild delete-project --profile shibutrial --project-name ss-poc-build
+ 1914  aws codebuild delete-project --profile shibutrial --name ss-poc-build
+ 1915  aws codebuild --profile shibutrial create-project --cli-input-json file://create-codebuild-project.json
+ 1916  ACCOUNT_ID=560773393352
+ 1917  REGION=us-east-2
+ 1918  REPO_NAME=ss-cloud-poc
+ 1919  REPO_URL=560773393352.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc
+ 1920  aws ecr  --profile shibuadmin get-login-password --region $REGION | sudo docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+ 1921  aws ecr  --profile shibutrial get-login-password --region $REGION | sudo docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+ 1922  REPO_NAME=ss-cloud-poc
+ 1923  aws ecr  --profile shibutrial delete-repository --repository-name $REPO_NAME --force
+ 1924  aws ecr  --profile shibutrial create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1925  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
+ 1926  aws ecr  --profile shibutrial delete-repository --repository-name $REPO_NAME --force
+ 1927  aws ecr  --profile shibutrial create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+ 1928  aws s3 --profile shibutrial mb s3://shibu_linux_aws_test --region us-east-2
+ 1929  aws s3 --profile shibutrial mb s3://shibu_linux_aw --region us-east-2
+ 1930  aws s3 --profile shibutrial mb s3://shibu1123419 --region us-east-2
+ 1931  ls
+ 1932  aws s3 --profile shibutrial cp assume_role.json s3://shibu1123419
+ 1933  aws s3 --profile shibutrial website s3://shibu1123419/ --index-document index.html --error-document error.html
+ 1934  aws s3 --profile shibutrial rm s3://shibu1123419 --recursive
+ 1935  aws s3 --profile shibutrial rb s3://shibu1123419 --force
+ 1936  curl abc.com
+ 1937  vi .aws/credentials 
+ 1938  ls -l ss*
+ 1939  vi sspoc_lambda_policy.json 
+ 1940  aws iam put-user-policy --profile shibutrial --user-name shibutrial --policy-name lambda_all --policy-document file://sspoc_lambda_policy.json
+ 1941  aws iam create-role --profile shibutrial --role-name sspoc_basic_lambda_role --assume-role-policy-document file://sspoc_basic_lambda_role.json
+ 1942  aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+ 1943  aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python2.7 
+ 1944  aws lambda invoke --profile shibutrial --invocation-type RequestResponse --function-name add --region us-east-2 --log-type Tail --payload fileb://request.json output.txt
+ 1945  cat output.txt && echo
+ 1946  vi CodeDeploy-Trust.json
+ 1947  aws iam create-role --profile shibutrial --role-name CodeDeployServiceRole --assume-role-policy-document file://CodeDeploy-Trust.json
+ 1948  vi CodeDeploy-Trust.json
+ 1949  aws iam create-role --profile shibutrial --role-name CodeDeployServiceRole --assume-role-policy-document file://CodeDeploy-Trust.json
+ 1950  curl abc.com
+ 1951  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
+ 1952  REPO_NAME=ss-cloud-poc
+ 1953  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
+ 1954  curl abc.com
+ 1955  ll
+ 1956  ls -l ss*
+ 1957  cd codebuild/
+ 1958  ll
+ 1959  vi ss-poc-git-pull-policy.json
+ 1960  aws iam --profile shibutrial attach-role-policy --role-name AWSCodePipelineServiceRole-us-east-2-ss-pipeline --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+ 1961  aws iam --profile shibutrial attach-role-policy --role-name AWSCodePipelineServiceRole-us-east-2-ss-pipeline --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+ 1962  aws iam --profile shibutrial attach-role-policy --role-name AWSCodePipelineServiceRole-us-east-2-ss-pipeline --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+ 1963  aws iam --profile shibutrial attach-role-policy --role-name AWSCodePipelineServiceRole-us-east-2-ss-pipeline --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+ 1964  aws iam --profile shibutrial attach-role-policy --role-name AWSCodePipelineServiceRole-us-east-2-ss-pipeline --policy-arn "arn:aws:iam::aws:policy/AWSCodePipelineFullAccess"
+ 1965  aws codepipeline create-pipeline --pipeline ffewewr --generate-cli-skeleton 
+ 1966  aws codepipeline create-pipeline  --generate-cli-skeleton 
+ 1967  cd /vagrant 
+ 1968  aws codepipeline create-pipeline  --generate-cli-skeleton  > pipe-skeleton.txt
+ 1969  aws codepipeline --profile shibutrial get-pipeline  --name        ss-pipeline
+ 1970  vi pipeline2.json
+ 1971  aws codepipeline   create-pipeline   --cli-input-json  file://pipeline2.json
+ 1972  aws codepipeline --profile shibutrial   create-pipeline   --cli-input-json  file://pipeline2.json
+ 1973  REPO_NAME=ss-cloud-poc
+ 1974  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
+ 1975  vi GetAuthorizationToken.json
+ 1976  aws iam --profile shibutrial put-role-policy --role-name codebuild-ss-build4-service-role  --policy-name ss-poc-get-auth-policy  --policy-document file://GetAuthorizationToken.json
+ 1977  aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+ 1978  aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+ 1979  aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+ 1980  aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"
+ 1981  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME -image-ids imageTag=account-service-1.0 
+ 1982  REPO_NAME=ss-cloud-poc
+ 1983  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME -image-ids imageTag=account-service-1.0 
+ 1984  aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME --image-ids imageTag=account-service-1.0 
+ 1985  aws iam --profile shibutrial attach-role-policy --role-name codebuild-ss-build4-service-role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+ 1986  v h
+ 1987  ls -ltr
+ 1988  cd codebuild/
+ 1989  ll
+ 1990  vi create-codebuild-project.json
+ 1991  ..
+ 1992  cd ..
+ 1993  ls -ltr
+ 1994  cd /vagrant/
+ 1995  ls -ltr
+ 1996  vi pipe-skeleton.txt
+ 1997  vi pipeline2.json
+ 1998  aws --profile shibutrial codepipeline delete-pipeline --name sss-pipeline4
+ 1999  curl abc.com
+ 2000  cd /sscloudpoc/aws-client-commands/code-pipeline/
+ 2001  ll
+ 2002  aws --profile shibutrial codepipeline delete-pipeline --name sss-pipeline4
+ 2003  aws --profile shibutrial codepipeline delete-pipeline --name ss-pipeline3
+ 2004  history 
+ 2005  ls -l ~/pipeline2.json
+ 2006  ls -l ~/codebuild/pipeline2.json
+ 2007  ls -l /vagrant/pipeline2.json
+ 2008  mv /vagrant/pipeline2.json .
+ 2009  history > command history
+ 2010  history > command-history

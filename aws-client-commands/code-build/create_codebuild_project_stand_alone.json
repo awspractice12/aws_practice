@@ -1,0 +1,44 @@
+{
+    "name": "ss-poc-build-8",
+    "source": {
+        "type": "CODECOMMIT",
+        "location": "",
+        "gitCloneDepth": 0,
+        "insecureSsl": true
+    },
+    "sourceVersion": "master",
+    "artifacts": {
+        "type": "CODEPIPELINE"
+    },
+    "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/standard:2.0",
+        "computeType": "BUILD_GENERAL1_SMALL",
+        "environmentVariables": [
+            {
+                "name": "NOT_USED",
+                "value": "NOT_USED",
+                "type": "PLAINTEXT"
+            }
+        ],
+        "privilegedMode": true,
+        "imagePullCredentialsType": "CODEBUILD"
+    },
+    "serviceRole": "arn:aws:iam::560773393352:role/sspoc_codebuild_role",
+    "timeoutInMinutes": 60,
+    "queuedTimeoutInMinutes": 60,
+    "tags": [
+        {
+            "key": "X",
+            "value": "X"
+        }
+    ],
+    "badgeEnabled": false,
+    "logsConfig": {
+        "cloudWatchLogs": {
+            "status": "ENABLED",
+            "groupName": "ss-poc-build",
+            "streamName": "ss-poc-build-stream"
+        }
+    }
+}

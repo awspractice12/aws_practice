@@ -81,7 +81,11 @@
                             "FunctionName": "add"
                         },
                         "outputArtifacts": [],
-                        "inputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
                         "region": "us-east-2"
                     }
                 ]

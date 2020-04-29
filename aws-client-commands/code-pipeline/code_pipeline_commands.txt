@@ -20,10 +20,9 @@ aws iam --profile shibutrial attach-role-policy --role-name codebuild_ss_pipelin
 aws iam --profile shibutrial attach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 #====================================================================================
+#Create pipeline (Replace above role ARN in below document)
 
-# Replace above role ARN in below document
-
-aws codepipeline --profile shibutrial create-pipeline --cli-input-json  file://pipeline-definition.json
+aws codepipeline --profile shibutrial create-pipeline --cli-input-json  file://pipeline_definition.json
 
 #====================================================================================
 
@@ -35,29 +34,6 @@ aws codepipeline --profile shibutrial create-pipeline --cli-input-json  file://p
 #List Pipelines
 aws codepipeline --profile shibutrial list-pipelines --output text
 #====================================================================================
-#delete resources of code pipeline
-
-aws iam --profile shibutrial delete-role-policy    --role-name codebuild_ss_pipeline_service_role --policy-name ss-pipeline-get-auth-policy
-
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
-aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-
-aws iam --profile shibutrial delete-role    --role-name codebuild_ss_pipeline_service_role 
-
-#------------------------------------------------------------------------------------
-aws --profile shibutrial codepipeline delete-pipeline --name sss-pipeline4
-
-#====================================================================================
-Error: An error occurred (SignatureDoesNotMatch) when calling the DeleteRole operation: Signature expired:
-Solution: Usually the local system time is wrong
-#====================================================================================
-is not authorized to perform: codecommit:UploadArchive on resource
-
-
 
 
 

@@ -1,0 +1,56 @@
+====================================================================================================
+#List all projects
+aws codebuild --profile shibutrial list-projects
+====================================================================================================
+#Create a role
+aws iam create-role --profile shibutrial --role-name sspoc_codebuild_role --assume-role-policy-document file://assume_role.json
+
+Output:
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "sspoc_codebuild_role",
+        "RoleId": "AROAYFEFS5PEKUSGQ2IYX",
+        "Arn": "arn:aws:iam::560773393352:role/sspoc_codebuild_role",
+        "CreateDate": "2020-04-26T15:52:40+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "*"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}
+
+
+        "Arn": "arn:aws:iam::560773393352:role/sspoc_codebuild_role",
+
+====================================================================================================
+aws iam --profile shibutrial put-role-policy    --role-name sspoc_codebuild_role --policy-name sspoc_codebuild_get_auth_policy --policy-document file://GetAuthorizationToken.json
+
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+====================================================================================================
+# First create a skeleton JSON for project creation...
+aws codebuild --profile shibutrial create-project --generate-cli-skeleton
+
+# Once skeleton is generated, populate values as per your requirements, 
+# and then use the modified JSON in the create command
+
+#Use the above ARN in the create-codebuild-project.json
+
+aws codebuild --profile shibutrial create-project --cli-input-json file://create_codebuild_project_for_pipeline.json
+
+====================================================================================================
+aws iam --profile shibutrial put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-log-group-policy --policy-document file://ss-poc-log-group-policy.json
+aws iam --profile shibutrial put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-git-pull-policy  --policy-document file://ss-poc-git-pull-policy.json
+

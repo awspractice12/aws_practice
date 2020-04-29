@@ -1,0 +1,31 @@
+#====================================================================================
+#List Pipelines
+aws codepipeline --profile shibutrial list-pipelines --output text
+#====================================================================================
+#delete resources of code pipeline
+
+aws iam --profile shibutrial delete-role-policy    --role-name codebuild_ss_pipeline_service_role --policy-name ss-pipeline-get-auth-policy
+
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name codebuild_ss_pipeline_service_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+
+aws iam --profile shibutrial delete-role    --role-name codebuild_ss_pipeline_service_role 
+
+#------------------------------------------------------------------------------------
+aws --profile shibutrial codepipeline delete-pipeline --name ss-poc-pipeline-8
+
+
+#------------------------------------------------------------------------------------
+aws iam --profile shibutrial put-role-policy    --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-name ss-pipeline-get-auth-policy --policy-document file://GetAuthorizationToken.json
+
+aws iam --profile shibutrial attach-role-policy --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibutrial attach-role-policy --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial attach-role-policy --role-name AWS-CodePipeline-CodeBuild-Service-Role-7 --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+
+

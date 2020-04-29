@@ -1,0 +1,48 @@
+====================================================================================================
+#List all projects
+aws codebuild --profile shibutrial list-projects
+====================================================================================================
+
+#Do not use these
+#aws iam --profile shibutrial put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-log-group-policy --policy-document file://ss-poc-log-group-policy.json
+#aws iam --profile shibutrial put-role-policy --role-name sspoc_codebuild_role  --policy-name ss-poc-additional-policy --policy-document file://ss-poc-additional-policy.json
+====================================================================================================
+#TO delete old builds..
+#first get the list of builds
+aws codebuild --profile shibutrial list-builds
+
+#Copy the output json into a file 'builds.txt'
+#Then run below command
+aws codebuild --profile shibutrial batch-delete-builds --cli-input-json file://builds.txt
+
+====================================================================================================
+#get list of role-policies
+aws iam list-attached-role-policies --profile shibutrial --role-name sspoc_codebuild_role --output text
+
+#then detach them
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AWSCodeCommitFullAccess"
+aws iam --profile shibutrial detach-role-policy --role-name sspoc_codebuild_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+
+#---------------------------------------
+#get list of role-policies
+aws iam list-role-policies --profile shibutrial --role-name sspoc_codebuild_role --output text
+
+#then delete them
+aws iam delete-role-policy --profile shibutrial --role-name sspoc_codebuild_role --policy-name ss-poc-log-group-policy
+aws iam delete-role-policy --profile shibutrial --role-name sspoc_codebuild_role --policy-name sspoc_codebuild_get_auth_policy
+#---------------------------------------
+#delete role
+aws iam delete-role --profile shibutrial --role-name sspoc_codebuild_role
+
+====================================================================================================
+#Get list of projects
+aws codebuild list-projects --profile shibutrial --output text
+
+
+#Delete project
+aws codebuild delete-project --profile shibutrial --name "ss-poc-build-8"
+
+====================================================================================================

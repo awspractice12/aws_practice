@@ -1,0 +1,7 @@
+#====================================================================================
+Error: An error occurred (SignatureDoesNotMatch) when calling the DeleteRole operation: Signature expired:
+Solution: Usually the local system time is wrong
+#====================================================================================
+is not authorized to perform: codecommit:UploadArchive on resource
+
+

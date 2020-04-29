@@ -13,7 +13,7 @@
     "environment": {
         "type": "LINUX_CONTAINER",
         "image": "aws/codebuild/standard:2.0",
-        "computeType": "BUILD_GENERAL1_LARGE",
+        "computeType": "BUILD_GENERAL1_SMALL",
         "environmentVariables": [
             {
                 "name": "NOT_USED",
