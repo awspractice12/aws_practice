@@ -13,7 +13,9 @@ aws ecr  --profile shibutrial get-login-password --region $REGION | sudo docker 
 #------------------------------------------------------------------------------------
 
 aws ecr --profile shibutrial create-repository --repository-name $REPO_NAME --image-scanning-configuration scanOnPush=false --region $REGION
+#------------------------------------------------------------------------------------
         
+aws ecr --profile shibutrial set-repository-policy --repository-name $REPO_NAME --cli-input-json file://cross_account_access.json
 #------------------------------------------------------------------------------------
 #List Images
 aws ecr --profile shibutrial describe-images --repository-name $REPO_NAME
