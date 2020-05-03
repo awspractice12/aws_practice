@@ -50,7 +50,7 @@ def install_eks(step, stepto):
 	print("Starting installation of EKS from step {0} to step {1}".format(step,stepto))	
 	
 	print(eks_parm.divider)
-	sys.exit()
+	#sys.exit()
 	if step == 0:
 		rc = cmd_exec.execute_command_with_status("aws cloudformation create-stack --stack-name {0} --template-url {1}".format(eks_parm.VPC_STACK_NAME,eks_parm.VPC_TEMPLATE), False,
 			"aws cloudformation describe-stacks --stack-name {0} --query Stacks[0].StackStatus".format(eks_parm.VPC_STACK_NAME),"\"CREATE_COMPLETE\"")
@@ -64,7 +64,7 @@ def install_eks(step, stepto):
 		vpc_output=True
 
 	if step == 1:
-		sys.exit()
+		#sys.exit()
 		rc = cmd_exec.execute_command_with_status("aws eks create-cluster --name {0} --role-arn {1} --resources-vpc-config {2}".format(eks_parm.EKS_CLUSTER_NAME, eks_parm.EKS_ROLE_ARN, 
 			"subnetIds={0},securityGroupIds={1}".format(cmd_exec.aws_values["SubnetIds"],cmd_exec.aws_values["SecurityGroups"])), False,
 			"aws eks describe-cluster --name {0} --query cluster.status".format(eks_parm.EKS_CLUSTER_NAME),
@@ -164,9 +164,9 @@ def delete_eks(step,stepto):
 
 	if step == 0:
 		print("I am Start {}".format(step))
-		# cmd_exec.execute_command_with_status("aws cloudformation delete-stack --stack-name {} ".format(eks_parm.EKS_NODES_STACK_NAME), False, \
-		# "aws cloudformation describe-stacks --stack-name {} --query Stacks[0].StackStatus 2>&1 | grep -c \"does not exist\"".format(eks_parm.EKS_NODES_STACK_NAME), \
-		# "1")
+		cmd_exec.execute_command_with_status("aws cloudformation delete-stack --stack-name {} ".format(eks_parm.EKS_NODES_STACK_NAME), False, \
+		"aws cloudformation describe-stacks --stack-name {} --query Stacks[0].StackStatus 2>&1 | grep -c \"does not exist\"".format(eks_parm.EKS_NODES_STACK_NAME), \
+		"1")
 
 		if stepto == 0:
 			print("I am Stop {}".format(stepto))
@@ -176,9 +176,9 @@ def delete_eks(step,stepto):
 
 	if step == 1:
 		print("I am Start {}".format(step))
-		# cmd_exec.execute_command_with_status("aws eks delete-cluster --name {} ".format(eks_parm.EKS_CLUSTER_NAME), True, \
-		# "aws eks describe-cluster --name {0} --query cluster.status 2>&1 | grep -c \"No cluster found\"".format(eks_parm.EKS_CLUSTER_NAME), \
-		# "1")
+		cmd_exec.execute_command_with_status("aws eks delete-cluster --name {} ".format(eks_parm.EKS_CLUSTER_NAME), True, \
+		"aws eks describe-cluster --name {0} --query cluster.status 2>&1 | grep -c \"No cluster found\"".format(eks_parm.EKS_CLUSTER_NAME), \
+		"1")
 
 		if stepto == 1:
 			print("I am  Stop {}".format(stepto))
@@ -189,9 +189,9 @@ def delete_eks(step,stepto):
 	if step == 2:
 		print("I am Start {}".format(step))
 
-		# cmd_exec.execute_command_with_status("aws cloudformation delete-stack --stack-name {} ".format(eks_parm.VPC_STACK_NAME), False, \
-		# "aws cloudformation describe-stacks --stack-name {} --query Stacks[0].StackStatus 2>&1 | grep -c \"does not exist\"".format(eks_parm.VPC_STACK_NAME), \
-		# "1")
+		cmd_exec.execute_command_with_status("aws cloudformation delete-stack --stack-name {} ".format(eks_parm.VPC_STACK_NAME), False, \
+		"aws cloudformation describe-stacks --stack-name {} --query Stacks[0].StackStatus 2>&1 | grep -c \"does not exist\"".format(eks_parm.VPC_STACK_NAME), \
+		"1")
 
 		if stepto == 2:
 			print("I am  Stop {}".format(stepto))
