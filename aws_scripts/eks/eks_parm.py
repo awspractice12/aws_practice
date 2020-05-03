@@ -20,16 +20,16 @@ VPC_TEMPLATE="https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2018-
 #===============================
 #	EKS Cluster
 #===============================
-EKS_CLUSTER_NAME="websvccluster"
+EKS_CLUSTER_NAME="ss-poc-cluster"
 # EKS_ROLE_ARN="arn:aws:iam::669678783832:role/cbd-eks-role"
-EKS_ROLE_ARN="arn:aws:iam::500946550028:role/EKS_ARUN_CLUSTER_MANAGE_ROLE"
+EKS_ROLE_ARN="arn:aws:iam::560773393352:role/ss_poc_eks_cluster_policy"
 #===============================
 #	EKS Worker Nodes
 #===============================
 EKS_NODES_TEMPLATE="https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2018-12-10/amazon-eks-nodegroup.yaml"
 # EKS_NODES_TEMPLATE="D:\Vagrant-Projects\data\aws_scripts\yml\amazon-eks-nodegroup.yaml"
-EKS_NODES_STACK_NAME="websvccluster-nodes"
-EKS_NODE_GROUP_NAME="websvccluster-eks-nodes"
+EKS_NODES_STACK_NAME="ss-poc-nodes"
+EKS_NODE_GROUP_NAME="ss-poc-eks-nodes"
 EKS_NODE_AS_GROUP_MIN="2"
 EKS_NODE_AS_GROUP_MAX="2"
 EKS_NODE_AS_GROUP_DESIRED="2"
@@ -41,12 +41,12 @@ EKS_NODE_INSTANCE_TYPE="m4.4xlarge"
 EKS_IMAGE_ID="ami-053cbe66e0033ebcf"
 
 #The IAM Key to use
-EKS_KEY_NAME="Python_websvc"
+EKS_KEY_NAME="KeyPair2"
 
 EKS_NODE_VOLUME_SIZE="20"
 
 #===============================
 #	Secondary User
 #===============================
-AWS_SECOND_USER_ARN="arn:aws:iam::500946550028:user/shibu.narayanan"
-AWS_SECOND_USER_NAME="shibu.narayanan"
+#AWS_SECOND_USER_ARN="arn:aws:iam::500946550028:user/shibu.narayanan"
+#AWS_SECOND_USER_NAME="shibu.narayanan"
