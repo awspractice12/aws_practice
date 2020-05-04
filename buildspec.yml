@@ -50,7 +50,16 @@ phases:
       - docker build . -t $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
       - docker push       $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
       - 
-      # - command
+      - cd ..
+      - aws s3 cp kubernetes-manifests/account-depl.yaml         s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/account-service.yaml      s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/customer-depl.yaml        s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/customer-service.yaml     s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/derby-db-depl.yaml        s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/derby-db-service.yaml     s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/loan-depl.yaml            s3://ss-poc-shibu/
+      - aws s3 cp kubernetes-manifests/loan-service.yaml         s3://ss-poc-shibu/
+
   #post_build:
     #commands:
       # - command
