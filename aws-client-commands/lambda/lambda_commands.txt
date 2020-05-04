@@ -42,11 +42,16 @@ aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_r
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
 aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_role --policy-arn "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 
+
+???? sspoc_lambda_eks_policy ????
+
+
 #====================================================================================================
 
 #create lambda function 
 
-aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python3.8 
+aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python3.8 --layers "arn:aws:lambda:us-east-2:560773393352:layer:sspoc-kubctl-layer:1" --timeout 30
+
 
 #====================================================================================================
 

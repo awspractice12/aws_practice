@@ -4,6 +4,7 @@
        "Effect": "Allow",
        "Action": [
           "iam:*",
+          "eks:*",
           "lambda:*"
        ],
        "Resource": "*"
