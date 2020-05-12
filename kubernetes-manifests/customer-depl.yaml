@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: customer-pod
-          image: "732631625641.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc:customer-service-1.0"
+          image: "560773393352.dkr.ecr.us-east-2.amazonaws.com/ss-cloud-poc:customer-service-1.0"
           #image: "localhost:5000/ss-cloud-poc:customer-service-1.0"
           env:
           - name: ACCOUNT_SERVER_URL_BASE
