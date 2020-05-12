@@ -27,7 +27,7 @@ zip sspoc_main.zip sspoc_main.py
 #The role specifies what actions the function instance is capable of ( check assume_role.json )
 #--------------------------------------------------------
 aws iam create-role --profile shibutrial --role-name sspoc_basic_lambda_role --assume-role-policy-document file://assume_role.json
-...
+
 
 # Note down the "ARN" e.g:
 "Arn": "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role"
@@ -47,6 +47,10 @@ aws iam --profile shibutrial attach-role-policy --role-name sspoc_basic_lambda_r
 #create lambda function 
 
 aws lambda create-function --profile shibutrial --function-name add --zip-file fileb://sspoc_main.zip --role "arn:aws:iam::560773393352:role/sspoc_basic_lambda_role" --handler sspoc_main.add --runtime python3.8 
+
+#Add layers to lambda function
+
+
 
 #====================================================================================================
 
