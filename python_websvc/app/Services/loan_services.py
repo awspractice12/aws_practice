@@ -36,23 +36,28 @@ class loan_entry:
 class loan_retrive:
 
     def get_all_loans():
-        dynamodb = conn.ddbcln
-        return dynamodb.scan(
-        TableName='t_loan'
-        )
+        dynamodb = conn.ddbres
+        loan_table = dynamodb.Table('t_loan')
+        customer = loan_table.scan()['Items']
+        return customer
 
     def retrievecust(cust_id):
         dynamodb = conn.ddbres
-        table = dynamodb.Table('t_loan')
-        customer = table.query(KeyConditionExpression=Key('cust_id').eq(cust_id))
+        loan_table = dynamodb.Table('t_loan')
+        filtering_exp = Key('cust_id').eq(cust_id)
+        customer = loan_table.scan(FilterExpression=filtering_exp)['Items']
+        # customer = table.query(KeyConditionExpression=Key('cust_id').eq(cust_id))
         return customer
           
     def retrieveloan(cust_id,loan_id):
-    	dynamodb = conn.ddbres
-    	table = dynamodb.Table('t_loan')
-    	loan_rec = table.query(KeyConditionExpression=Key('cust_id').eq(cust_id) & Key('loan_id').eq(loan_id))
-    	return loan_rec
-    	
+        dynamodb = conn.ddbres
+        loan_table = dynamodb.Table('t_loan')
+        filtering_exp = Key('cust_id').eq(cust_id)
+        filtering_exp2 = Key('loan_id').eq(loan_id)
+        loan_rec = loan_table.scan(FilterExpression=filtering_exp and filtering_exp2)['Items']
+        # loan_rec = table.query(KeyConditionExpression=Key('cust_id').eq(cust_id) & Key('loan_id').eq(loan_id))
+        return loan_rec
+        
 
 class loan_payment:
     def loan_payment(loan_id,trans_id,trans_date,installment_no,installment_amt):
@@ -81,20 +86,25 @@ class loan_payment:
 class payment_retrive:
 
     def get_all_pay():
-        dynamodb = conn.ddbcln
-        return dynamodb.scan(
-        TableName='t_loan_pay'
-        )
+        dynamodb = conn.ddbres
+        pay_table = dynamodb.Table('t_loan_pay')
+        payments = pay_table.scan()['Items']
+        return payments
 
     def retrieve_cust_pay(loan_id):
-    	dynamodb = conn.ddbres
-    	table = dynamodb.Table('t_loan_pay')
-    	pay_det = table.query(KeyConditionExpression=Key('loan_id').eq(loan_id))
-    	return pay_det
+        dynamodb = conn.ddbres
+        pay_table = dynamodb.Table('t_loan_pay')
+        filtering_exp = Key('loan_id').eq(loan_id)
+        pay_det = pay_table.scan(FilterExpression=filtering_exp)['Items']
+    	# pay_det = table.query(KeyConditionExpression=Key('loan_id').eq(loan_id))
+        return pay_det
 
     def retrieve_loan_pay(loan_id,trans_id):
-    	dynamodb = conn.ddbres
-    	table = dynamodb.Table('t_loan_pay')
-    	loan_rec = table.query(KeyConditionExpression=Key('loan_id').eq(loan_id) & Key('trans_id').eq(trans_id))
-    	return loan_rec
+        dynamodb = conn.ddbres
+        pay_table = dynamodb.Table('t_loan_pay')
+        filtering_exp = Key('loan_id').eq(loan_id)
+        filtering_exp2 = Key('trans_id').eq(trans_id)
+        loan_pay_rec = pay_table.scan(FilterExpression=filtering_exp and filtering_exp2)['Items']
+        # loan_rec = table.query(KeyConditionExpression=Key('loan_id').eq(loan_id) & Key('trans_id').eq(trans_id))
+        return loan_pay_rec 
     	
