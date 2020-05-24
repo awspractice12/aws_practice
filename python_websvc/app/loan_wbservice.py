@@ -51,4 +51,4 @@ def get_pay(loan_id,trans_id):
 #     return cust_loan
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
