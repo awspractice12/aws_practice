@@ -106,5 +106,5 @@ class payment_retrive:
         filtering_exp2 = Key('trans_id').eq(trans_id)
         loan_pay_rec = pay_table.scan(FilterExpression=filtering_exp and filtering_exp2)['Items']
         # loan_rec = table.query(KeyConditionExpression=Key('loan_id').eq(loan_id) & Key('trans_id').eq(trans_id))
-        return loan_pay_rec
+        return loan_pay_rec 
     	

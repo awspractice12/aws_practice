@@ -4,7 +4,7 @@ from decEncoder import *
 import decimal
 import json
 
-app = Flask(__name__)
+app = Flask(__name__) 
 
 @app.route('/')
 def index():
