@@ -146,7 +146,7 @@ eks_parm.EKS_NODE_VOLUME_SIZE, eks_parm.EKS_NODE_AS_GROUP_DESIRED
 
 	if step == 6 and len(AWS_SEC_ARN) > 3 and len(AWS_SEC_NAME) >= 1:
 		cmd_exec.execute_command("kubectl get -n kube-system configmap/aws-auth -o yaml > aws-auth-patch.yaml", False)
-		cmd_exec.insert_lines("./aws-auth-patch.yaml", "kind: ConfigMap",["  mapUsers: |","    - userarn: {}".format(eks_parm.AWS_SECOND_USER_ARN), \
+		cmd_exec.insert_lines("./aws-auth-patch.yaml", "kind: ConfigMap",["    - rolearn: {}".format(eks_parm.AWS_SECOND_USER_ARN), \
 				"      username: {}".format(eks_parm.AWS_SECOND_USER_NAME), \
 				"      groups:", \
 				"        - system:masters"])
