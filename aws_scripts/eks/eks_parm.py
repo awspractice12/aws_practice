@@ -50,3 +50,6 @@ EKS_NODE_VOLUME_SIZE="20"
 #===============================
 #AWS_SECOND_USER_ARN="arn:aws:iam::500946550028:user/shibu.narayanan"
 #AWS_SECOND_USER_NAME="shibu.narayanan"
+AWS_SECOND_USER_ARN="arn:aws:iam::560773393352:role/sspoc_basic_lambda_role"
+AWS_SECOND_USER_NAME="sspoc_basic_lambda_role"
+

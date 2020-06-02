@@ -1,24 +1,6 @@
 version: 0.2
 
-#env:
-  #variables:
-     # key: "value"
-  #parameter-store:
-     # key: "value"
-  #secrets-manager:
-     # key: secret-id:json-key:version-stage:version-id
-  #exported-variables:
-     # - variable
-  #git-credential-helper: yes
-
 phases:
-  #install:
-    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
-    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-    #runtime-versions:
-      # name: version
-    #commands:
-      # - command
   pre_build:
     commands:
       - echo 'Logging into AWS'
@@ -32,55 +14,30 @@ phases:
   build:
     commands:
       - cd java-micro-service-projects
-      - mvn install
-      - cd account-service
-      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
-      - docker push       $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
-      - cd ..
-      - cd customer-service
-      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:customer-service-1.0
-      - docker push       $REPOSITORY_URI/ss-cloud-poc:customer-service-1.0
-      -
-      - docker pull lucascoelhocs/db-derby:latest
-      - docker tag  lucascoelhocs/db-derby:latest  $REPOSITORY_URI/ss-cloud-poc:db-derby-1.0
-      - docker push $REPOSITORY_URI/ss-cloud-poc:db-derby-1.0
-      -
-      - cd ../..
-      - cd python_websvc
-      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
-      - docker push       $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
-      - 
-      - cd ..
-      - aws s3 cp kubernetes-manifests/account-depl.yaml         s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/account-service.yaml      s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/customer-depl.yaml        s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/customer-service.yaml     s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/derby-db-depl.yaml        s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/derby-db-service.yaml     s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/loan-depl.yaml            s3://ss-poc-shibu/
-      - aws s3 cp kubernetes-manifests/loan-service.yaml         s3://ss-poc-shibu/
-
-  #post_build:
-    #commands:
-      # - command
-      # - command
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
-#artifacts:
-  #files:
-    # - java-micro-service-projects/account-service/target/
-    # - java-micro-service-projects/customer-service/target/
-    # - java-micro-service-projects/
-    
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
-#cache:
-  #paths:
-    # - paths
+#      - mvn install
+#      - cd account-service
+#      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
+#      - docker push       $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
+#      - cd ..
+#      - cd customer-service
+#      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:customer-service-1.0
+#      - docker push       $REPOSITORY_URI/ss-cloud-poc:customer-service-1.0
+#      -
+#      - docker pull lucascoelhocs/db-derby:latest
+#      - docker tag  lucascoelhocs/db-derby:latest  $REPOSITORY_URI/ss-cloud-poc:db-derby-1.0
+#      - docker push $REPOSITORY_URI/ss-cloud-poc:db-derby-1.0
+#      -
+#      - cd ../..
+#      - cd python_websvc
+#      - docker build . -t $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
+#      - docker push       $REPOSITORY_URI/ss-cloud-poc:loan-service-1.0
+#      - 
+#      - cd ..
+#      - aws s3 cp kubernetes-manifests/account-depl.yaml         s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/account-service.yaml      s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/customer-depl.yaml        s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/customer-service.yaml     s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/derby-db-depl.yaml        s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/derby-db-service.yaml     s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/loan-depl.yaml            s3://ss-poc-shibu/
+#      - aws s3 cp kubernetes-manifests/loan-service.yaml         s3://ss-poc-shibu/

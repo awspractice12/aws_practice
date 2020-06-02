@@ -16,4 +16,5 @@ output.txt
 *.pem
 sspoc_main.zip
 aws-provisioning.txt
+*.pyc
 
