@@ -1,0 +1,13 @@
+1>  Send email using SES on build complete - success or failure
+    On success, get kubernetes cluster status and include in email
+2>  Have a pluggable pipeline
+    a> Code source could be AWS, Azure, Github
+    b> Docker repo could be AWS, Azure, Dockerhub
+    c> Kubernetes could be AWS, Azure, OpenShift
+    d> Lambda could be AWS, Azure, etc..
+3>  Deomonstrate that code changes are reflected in final deployment
+    May be port change, or pod replica count
+4>  Manager approval stage
+5>  blue-green deployment
+6>  for each environment, build from its own branch. is this required?
+7>  Parametrized build (Manual trigger)
