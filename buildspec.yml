@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo 'Logging into AWS'
+      - echo 'Logging into docker'
       - aws --version
       - REPOSITORY_URI=docker.io/$DOCKER_USER
       - docker login --username $DOCKER_USER --password $DOCKER_PW $REPOSITORY_URI
