@@ -5,17 +5,17 @@ phases:
     commands:
       - echo 'Logging into docker'
       - aws --version
-      - REPOSITORY_URI=docker.io/$DOCKER_USER
-      - docker login --username $DOCKER_USER --password $DOCKER_PW $REPOSITORY_URI
+      - REPOSITORY_URI=$DOCKER_USER
+      - docker login --username $DOCKER_USER --password $DOCKER_PW
 #      - REPOSITORY_URI=$DOCKER_USER
   build:
     commands:
       - cd java-micro-service-projects
       - mvn install
       - cd account-service
-      - REPOSITORY_URI=docker.io/$DOCKER_USER
-      - docker login --username $DOCKER_USER --password $DOCKER_PW $REPOSITORY_URI
-      - REPOSITORY_URI=$DOCKER_USER
+#      - REPOSITORY_URI=docker.io/$DOCKER_USER
+#      - docker login --username $DOCKER_USER --password $DOCKER_PW $REPOSITORY_URI
+#      - REPOSITORY_URI=$DOCKER_USER
       - docker build . -t $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
       - docker push       $REPOSITORY_URI/ss-cloud-poc:account-service-1.0
       - cd ..
